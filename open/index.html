@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kanvis System</title>
+  <style>
+    :root {
+      --bg: #f5f6f8;
+      --surface: #ffffff;
+      --surface-2: #f0f2f5;
+      --text: #1e2329;
+      --muted: #68707c;
+      --faint: #9299a3;
+      --line: #dfe3e8;
+      --teal: #087f72;
+      --teal-soft: #e5f5f2;
+      --blue: #2f5fb3;
+      --blue-soft: #edf3ff;
+      --amber: #9a6200;
+      --amber-soft: #fff4d8;
+      --red: #a13d46;
+      --shadow: 0 14px 40px rgba(28, 35, 45, 0.08);
+      --radius: 6px;
+      --radius-card: 8px;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+    body.is-dark {
+      --bg: #111418;
+      --surface: #171b20;
+      --surface-2: #20252b;
+      --text: #eef1f4;
+      --muted: #a8b0ba;
+      --faint: #747e89;
+      --line: #303740;
+      --teal: #35c7b4;
+      --teal-soft: #153732;
+      --blue: #7da8ff;
+      --blue-soft: #202f4b;
+      --amber: #f0bd55;
+      --amber-soft: #3a2d15;
+      --red: #ff8992;
+      --shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
+    }
+    * { box-sizing: border-box; letter-spacing: 0; }
+    html { background: var(--bg); }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 13px/1.55 var(--font); }
+    button, textarea, select, input { font: inherit; }
+    button { color: inherit; }
+    .kv-svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .ko-app { min-height: 100vh; }
+    .ko-topbar {
+      position: sticky; top: 0; z-index: 30;
+      display: flex; align-items: center; gap: 16px;
+      min-height: 58px; padding: 0 22px;
+      background: color-mix(in srgb, var(--surface) 94%, transparent);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    .ko-brand-link { display: flex; align-items: center; gap: 10px; min-width: 210px; color: inherit; text-decoration: none; }
+    .ko-brand-link:hover .ko-brand-copy strong { color: var(--teal); }
+    .ko-mark { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 6px; color: #fff; background: var(--teal); font: 750 13px/1 var(--mono); }
+    .ko-brand-copy strong { display: block; font-size: 13px; }
+    .ko-brand-copy span { display: block; color: var(--faint); font-size: 9px; }
+    .ko-tabs { display: flex; align-self: stretch; gap: 2px; }
+    .ko-tab { position: relative; display: flex; align-items: center; gap: 7px; padding: 0 14px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+    .ko-tab::after { content: ""; position: absolute; right: 12px; bottom: -1px; left: 12px; height: 2px; background: transparent; }
+    .ko-tab:hover { color: var(--text); background: var(--surface-2); }
+    .ko-tab.is-active { color: var(--teal); font-weight: 650; }
+    .ko-tab.is-active::after { background: var(--teal); }
+    .ko-top-actions { display: flex; gap: 7px; margin-left: auto; }
+    .ko-icon-btn, .ko-btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 32px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); cursor: pointer; }
+    .ko-icon-btn { width: 32px; padding: 0; }
+    .ko-btn { padding: 0 11px; font-size: 11px; }
+    .ko-btn:hover, .ko-icon-btn:hover { border-color: var(--teal); color: var(--teal); }
+    .ko-btn-primary { border-color: var(--teal); color: #fff; background: var(--teal); }
+    .ko-btn-primary:hover { color: #fff; filter: brightness(0.94); }
+      .ko-btn-quiet { background: var(--surface-2); }
+      .ko-home-link { white-space: nowrap; }
+      .ko-intro-author { margin: 9px 0 0; color: var(--muted); font-size: 10px; }
+      .ko-intro-author a { color: var(--teal-dark); font-weight: 700; text-decoration: none; }
+      .ko-intro-author a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .ko-main { width: min(1220px, calc(100% - 32px)); margin: 0 auto; padding: 22px 0 44px; }
+    .ko-panel[hidden] { display: none; }
+    .ko-section { margin-top: 24px; }
+    .ko-section:first-child { margin-top: 0; }
+    .ko-section-head { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 10px; }
+    .ko-section-head h2, .ko-section-head h3 { margin: 0; }
+    .ko-section-head h2 { font-size: 20px; }
+    .ko-section-head h3 { font-size: 13px; }
+    .ko-section-head p { margin: 3px 0 0; color: var(--muted); font-size: 10px; }
+    .ko-intro {
+      display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(380px, 0.95fr); gap: 20px;
+      padding: 22px; border: 1px solid var(--line); border-left: 3px solid var(--teal); border-radius: var(--radius-card); background: var(--surface); box-shadow: var(--shadow);
+    }
+    .ko-kicker { display: flex; align-items: center; gap: 7px; color: var(--teal); font-size: 10px; font-weight: 700; }
+    .ko-intro h1 { margin: 9px 0 8px; font-size: 30px; line-height: 1.2; }
+    .ko-intro-copy { max-width: 640px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.75; }
+    .ko-intro-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .ko-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin-top: 18px; }
+    .ko-fact { padding: 9px; border-left: 2px solid var(--line); }
+    .ko-fact strong { display: block; font-size: 11px; }
+    .ko-fact span { color: var(--faint); font-size: 9px; }
+    .ko-preview-frame { position: relative; min-height: 230px; overflow: hidden; border: 1px solid #252b32; border-radius: var(--radius); background: #0c0f12; }
+    .ko-preview-frame img { width: 100%; height: 100%; min-height: 230px; object-fit: cover; object-position: center; display: block; }
+    .ko-preview-label { position: absolute; top: 10px; left: 10px; padding: 5px 7px; border: 1px solid rgba(255,255,255,0.2); border-radius: 5px; color: #fff; background: rgba(10,13,16,0.78); font-size: 9px; }
+    .ko-grid-2, .ko-grid-3, .ko-grid-4 { display: grid; gap: 9px; }
+    .ko-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ko-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ko-grid-4 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ko-card { padding: 14px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .ko-card-head { display: flex; align-items: center; gap: 9px; }
+    .ko-card-icon { width: 29px; height: 29px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 5px; color: var(--teal); background: var(--teal-soft); }
+    .ko-card-title { min-width: 0; }
+    .ko-card-title strong { display: block; font-size: 12px; }
+    .ko-card-title span { display: block; color: var(--faint); font-size: 9px; }
+    .ko-card p { margin: 9px 0 0; color: var(--muted); font-size: 10px; line-height: 1.65; }
+    .ko-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 12px; }
+    .ko-chip { display: inline-flex; align-items: center; gap: 5px; min-height: 21px; padding: 0 7px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--surface-2); font-size: 8px; white-space: nowrap; }
+    .ko-chip::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+    .ko-chip-live { color: var(--teal); border-color: color-mix(in srgb, var(--teal) 30%, var(--line)); background: var(--teal-soft); }
+    .ko-chip-credit { color: var(--amber); border-color: color-mix(in srgb, var(--amber) 30%, var(--line)); background: var(--amber-soft); }
+    .ko-inline { padding: 0; border: 0; color: var(--blue); background: transparent; font-size: 9px; cursor: pointer; }
+    .ko-inline:hover { text-decoration: underline; }
+    .ko-service-band { display: grid; grid-template-columns: 0.75fr 1.25fr; gap: 14px; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--surface); }
+    .ko-service-copy h3 { margin: 0 0 6px; font-size: 16px; }
+    .ko-service-copy p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.65; }
+    .ko-service-path { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .ko-service-step { padding: 10px; border-right: 1px solid var(--line); }
+    .ko-service-step:last-child { border-right: 0; }
+    .ko-service-step span { display: block; color: var(--faint); font: 650 9px/1.4 var(--mono); }
+    .ko-service-step strong { display: block; margin-top: 4px; font-size: 11px; }
+    .ko-service-step p { margin-top: 4px; }
+    .ko-partner { display: flex; align-items: center; gap: 12px; padding: 13px 14px; border: 1px solid var(--line); border-left: 3px solid var(--blue); border-radius: var(--radius); background: var(--blue-soft); }
+    .ko-partner > div { flex: 1; }
+    .ko-partner strong { display: block; font-size: 11px; }
+    .ko-partner p { margin: 3px 0 0; color: var(--muted); font-size: 9px; }
+    .ko-skill-toolbar { display: grid; grid-template-columns: minmax(240px, 1fr) auto; gap: 10px; align-items: center; padding: 12px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .ko-skill-search { position: relative; }
+    .ko-skill-search svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--faint); pointer-events: none; }
+    .ko-skill-search input { width: 100%; min-height: 36px; padding: 0 10px 0 32px; border: 1px solid var(--line); border-radius: var(--radius); color: var(--text); background: var(--surface-2); outline: none; }
+    .ko-skill-search input:focus { border-color: var(--teal); box-shadow: 0 0 0 2px color-mix(in srgb, var(--teal) 15%, transparent); }
+    .ko-skill-filters { display: inline-flex; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .ko-skill-filter { min-height: 34px; padding: 0 10px; border: 0; border-right: 1px solid var(--line); color: var(--muted); background: var(--surface); font-size: 9px; cursor: pointer; }
+    .ko-skill-filter:last-child { border-right: 0; }
+    .ko-skill-filter.is-active { color: #fff; background: var(--teal); }
+    .ko-skill-summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 10px 0 8px; color: var(--muted); font-size: 9px; }
+    .ko-skill-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+    .ko-skill-card[hidden] { display: none; }
+    .ko-skill-card h3 { margin: 8px 0 0; font-size: 12px; }
+    .ko-skill-card p { min-height: 50px; }
+    .ko-skill-badges { display: flex; flex-wrap: wrap; gap: 5px; }
+    .ko-skill-route { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-top: 11px; padding-top: 9px; border-top: 1px solid var(--line); }
+    .ko-skill-route span { color: var(--faint); font-size: 8px; }
+    .ko-skill-route strong { color: var(--text); font-size: 9px; text-align: right; }
+    .ko-skill-group + .ko-skill-group { margin-top: 18px; }
+    .ko-skill-group[hidden] { display: none; }
+    .ko-skill-group-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+    .ko-skill-group-head h3 { margin: 0; font-size: 12px; }
+    .ko-skill-group-head p { margin: 0; color: var(--muted); font-size: 9px; }
+    .ko-skill-empty { padding: 28px 14px; border: 1px dashed var(--line); border-radius: var(--radius); color: var(--muted); text-align: center; font-size: 10px; }
+    .ko-skill-empty[hidden] { display: none; }
+    .ko-label { display: block; margin: 0 0 6px; color: var(--muted); font-size: 9px; font-weight: 650; }
+    .ko-select, .ko-textarea, .ko-input { width: 100%; border: 1px solid var(--line); border-radius: var(--radius); color: var(--text); background: var(--surface); outline: none; }
+    .ko-select, .ko-input { min-height: 36px; padding: 0 10px; }
+    .ko-textarea { min-height: 150px; padding: 10px; resize: vertical; line-height: 1.6; }
+    .ko-select:focus, .ko-textarea:focus, .ko-input:focus { border-color: var(--teal); box-shadow: 0 0 0 2px color-mix(in srgb, var(--teal) 15%, transparent); }
+    .ko-btn:disabled { opacity: 0.45; cursor: not-allowed; filter: none; }
+    .ko-editor { display: grid; grid-template-columns: minmax(0, 1fr) 270px; min-height: 620px; border: 1px solid #242b31; border-radius: var(--radius-card); overflow: hidden; background: #0b0e11; color: #e9edf2; }
+    .ko-editor-main { display: grid; grid-template-rows: auto minmax(330px, 1fr) 166px; min-width: 0; }
+    .ko-editor-toolbar { display: flex; align-items: center; gap: 7px; min-height: 46px; padding: 0 12px; border-bottom: 1px solid #242b31; background: #11151a; }
+    .ko-editor-toolbar strong { font-size: 11px; }
+    .ko-editor-toolbar .ko-btn { border-color: #303842; color: #c7cdd5; background: #171c22; }
+    .ko-editor-toolbar .ko-btn-primary { color: #fff; background: #087f72; border-color: #087f72; }
+    .ko-stage { display: grid; place-items: center; min-width: 0; padding: 14px; overflow: hidden; background: #090c0f; }
+    .ko-stage img { width: min(100%, 880px); max-height: 100%; object-fit: contain; border: 1px solid #252c34; box-shadow: 0 16px 50px rgba(0,0,0,0.35); }
+    .ko-timeline { padding: 10px 12px; border-top: 1px solid #242b31; background: #101419; overflow: hidden; }
+    .ko-time-head { display: flex; align-items: center; justify-content: space-between; color: #99a4af; font-size: 9px; }
+    .ko-track { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 8px; align-items: center; margin-top: 8px; }
+    .ko-track-label { color: #7f8a95; font-size: 8px; }
+    .ko-track-line { position: relative; height: 28px; border: 1px solid #27303a; background: #0c1014; }
+    .ko-clip { position: absolute; top: 3px; bottom: 3px; display: flex; align-items: center; padding: 0 8px; border-radius: 3px; overflow: hidden; white-space: nowrap; font-size: 8px; }
+    .ko-clip-a { left: 2%; width: 44%; color: #b9fff4; border: 1px solid #168c7d; background: #153d38; }
+    .ko-clip-b { left: 33%; width: 62%; color: #d9e5ff; border: 1px solid #456baf; background: #1f3762; }
+    .ko-clip-c { left: 12%; width: 76%; color: #ffe8a8; border: 1px solid #9a6c1a; background: #3b2d13; }
+    .ko-playhead { position: absolute; top: -5px; bottom: -5px; left: 38%; width: 1px; background: #ff6b75; }
+    .ko-editor-side { padding: 13px; border-left: 1px solid #242b31; background: #12161b; }
+    .ko-editor-side h3 { margin: 0 0 12px; font-size: 11px; }
+    .ko-dark-label { display: block; margin-bottom: 5px; color: #8c97a3; font-size: 8px; }
+    .ko-dark-input { width: 100%; min-height: 34px; padding: 0 9px; border: 1px solid #303842; border-radius: 5px; color: #e9edf2; background: #0e1216; }
+    .ko-range-row { display: grid; grid-template-columns: 1fr 38px; gap: 8px; align-items: center; }
+    .ko-range { width: 100%; accent-color: #35c7b4; }
+    .ko-range-value { color: #35c7b4; font: 650 9px/1 var(--mono); text-align: right; }
+    .ko-side-field + .ko-side-field { margin-top: 13px; }
+    .ko-side-note { margin: 12px 0 0; color: #798591; font-size: 8px; line-height: 1.55; }
+    .ko-toast { position: fixed; right: 18px; bottom: 18px; z-index: 50; max-width: min(340px, calc(100vw - 36px)); padding: 9px 12px; border: 1px solid var(--line); border-radius: var(--radius); color: var(--text); background: var(--surface); box-shadow: var(--shadow); font-size: 10px; opacity: 0; transform: translateY(8px); pointer-events: none; transition: .16s ease; }
+    .ko-toast.is-visible { opacity: 1; transform: translateY(0); }
+    .ko-modal[hidden] { display: none; }
+    .ko-modal { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 18px; }
+    .ko-modal-backdrop { position: absolute; inset: 0; background: rgba(12, 18, 22, 0.58); }
+    .ko-modal-dialog { position: relative; width: min(620px, 100%); max-height: calc(100vh - 36px); overflow: auto; border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--surface); box-shadow: 0 24px 70px rgba(14, 24, 31, 0.24); }
+    .ko-modal-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 16px 18px 12px; border-bottom: 1px solid var(--line); }
+    .ko-modal-head h2 { margin: 0; font-size: 16px; }
+    .ko-modal-head p { margin: 4px 0 0; color: var(--muted); font-size: 9px; }
+    .ko-modal-close { flex: 0 0 auto; }
+    .ko-modal-body { padding: 16px 18px 18px; }
+    .ko-modal-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .ko-modal-field.is-wide { grid-column: 1 / -1; }
+    .ko-modal-note { margin: 10px 0 0; color: var(--faint); font-size: 9px; }
+    .ko-modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
+    .ko-consult-result { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+    .ko-consult-result[hidden] { display: none; }
+    .ko-consult-result pre { margin: 0; padding: 11px; overflow: auto; border: 1px solid var(--line); border-radius: var(--radius); color: var(--text); background: var(--surface-2); font: 10px/1.7 var(--mono); white-space: pre-wrap; }
+    .ko-consult-result .ko-modal-actions { margin-top: 10px; }
+    body.ko-modal-open { overflow: hidden; }
+    @media (max-width: 980px) {
+      .ko-intro, .ko-service-band { grid-template-columns: 1fr; }
+      .ko-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .ko-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .ko-editor { grid-template-columns: 1fr; }
+      .ko-editor-side { border-top: 1px solid #242b31; border-left: 0; }
+      .ko-brand-link { min-width: auto; }
+    }
+    @media (max-width: 680px) {
+      .ko-topbar { align-items: flex-start; flex-wrap: wrap; padding: 10px 12px 0; }
+      .ko-brand-link { flex: 1; }
+      .ko-brand-copy span { display: none; }
+      .ko-top-actions { margin-left: 0; }
+      .ko-home-link { padding: 0 8px; font-size: 10px; }
+      .ko-tabs { order: 3; width: 100%; height: 42px; overflow-x: auto; }
+      .ko-tab { flex: 1 0 auto; justify-content: center; padding: 0 10px; }
+      .ko-main { width: min(100% - 20px, 1220px); padding-top: 12px; }
+      .ko-intro { padding: 15px; }
+      .ko-intro h1 { font-size: 23px; }
+      .ko-grid-2, .ko-grid-3, .ko-grid-4, .ko-service-path, .ko-facts { grid-template-columns: 1fr; }
+      .ko-service-step, .ko-service-step:nth-child(2) { border-right: 0; border-bottom: 1px solid var(--line); }
+      .ko-service-step:last-child { border-bottom: 0; }
+      .ko-partner { align-items: flex-start; flex-direction: column; }
+      .ko-partner .ko-btn { width: 100%; }
+      .ko-skill-toolbar { grid-template-columns: 1fr; }
+      .ko-skill-filters { width: 100%; }
+      .ko-skill-filter { flex: 1; }
+      .ko-skill-grid { grid-template-columns: 1fr; }
+      .ko-modal-grid { grid-template-columns: 1fr; }
+      .ko-modal-field.is-wide { grid-column: auto; }
+      .ko-editor-main { grid-template-rows: auto minmax(230px, 1fr) 166px; }
+      .ko-editor-toolbar { flex-wrap: wrap; padding: 7px; }
+      .ko-stage { padding: 6px; }
+      .ko-track { grid-template-columns: 42px minmax(0, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="ko-app" data-kanvis-open>
+    <header class="ko-topbar">
+      <a class="ko-brand-link" href="../" aria-label="返回Kanvis个人主页">
+        <span class="ko-mark">K</span>
+        <div class="ko-brand-copy"><strong>KANVIS SYSTEM</strong><span>康少发起 · 免费Skill生态 + 剪辑工作台</span></div>
+      </a>
+      <nav class="ko-tabs" role="tablist" aria-label="Kanvis开放生态页面">
+        <button class="ko-tab is-active" type="button" role="tab" aria-selected="true" data-tab="overview">
+          <svg class="kv-svg" viewBox="0 0 24 24" width="14" height="14"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>开放首页
+        </button>
+        <button class="ko-tab" type="button" role="tab" aria-selected="false" data-tab="skill">
+          <svg class="kv-svg" viewBox="0 0 24 24" width="14" height="14"><path d="M12 3v18M3 12h18"/><path d="m5 5 14 14M19 5 5 19"/></svg>Skill生态
+        </button>
+        <button class="ko-tab" type="button" role="tab" aria-selected="false" data-tab="workbench">
+          <svg class="kv-svg" viewBox="0 0 24 24" width="14" height="14"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>工作台说明
+        </button>
+      </nav>
+      <div class="ko-top-actions">
+        <button class="ko-icon-btn" type="button" data-action="theme" title="切换主题" aria-label="切换主题">
+          <svg class="kv-svg" viewBox="0 0 24 24" width="14" height="14"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <a class="ko-btn ko-btn-quiet ko-home-link" href="../">关于康少 ↗</a>
+        <a class="ko-btn ko-btn-primary" href="https://github.com/Kanvis-chen/article-to-avatar-video" target="_blank" rel="noopener">查看开源项目</a>
+      </div>
+    </header>
+
+    <main class="ko-main">
+      <section class="ko-panel" data-panel="overview">
+        <div class="ko-intro">
+          <div>
+            <div class="ko-kicker"><span class="ko-chip ko-chip-live">OPEN ECOSYSTEM</span><span>免费使用 · 开放源码 · 共同建设</span></div>
+            <h1>Kanvis System</h1>
+            <p class="ko-intro-copy">面向创作者与AI实践者的免费开放生态。这里持续发布Kanvis官方Skill与创作工具，也收录来源明确的图片、PPT和视频开放Skill。</p>
+            <p class="ko-intro-author">由康少 Kanvis 发起 · <a href="../">了解作者与Kanvis主页 →</a></p>
+            <div class="ko-intro-actions">
+              <button class="ko-btn ko-btn-primary" type="button" data-open-tab="skill">浏览Skill生态</button>
+              <button class="ko-btn" type="button" data-open-tab="workbench">了解本地工作台</button>
+              <button class="ko-btn ko-btn-quiet" type="button" data-action="partner">提交开放Skill</button>
+            </div>
+            <div class="ko-facts">
+              <div class="ko-fact"><strong>官方开源</strong><span>Kanvis Skill与基础工具</span></div>
+              <div class="ko-fact"><strong>开放收录</strong><span>图片、PPT与视频Skill</span></div>
+              <div class="ko-fact"><strong>免费工具</strong><span>Codex内本地工作台</span></div>
+            </div>
+          </div>
+          <div class="ko-preview-frame">
+            <img src="../assets/kanvis-workbench.png" alt="Kanvis免费剪辑工作台当前产品原型">
+            <span class="ko-preview-label">当前产品原型 · 免费剪辑工作台</span>
+          </div>
+        </div>
+
+        <section class="ko-section" aria-labelledby="open-includes">
+          <div class="ko-section-head"><div><h3 id="open-includes">当前开放进度</h3><p>区分已经开源的能力与正在开发的产品，具体状态以卡片标签为准</p></div></div>
+          <div class="ko-grid-2">
+            <article class="ko-card">
+              <div class="ko-card-head"><span class="ko-card-icon"><svg class="kv-svg" viewBox="0 0 24 24" width="15" height="15"><path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h5"/></svg></span><div class="ko-card-title"><strong>Kanvis 文稿成片 Skill</strong><span>Article to Avatar Video · 长文理解、口播改写、分镜、字幕与发布质检</span></div></div>
+              <p>把文章、课程稿和专业知识整理成口播脚本、分镜、字幕与素材任务，保留原文依据，并在发布前完成内容检查。</p>
+              <div class="ko-card-footer"><span class="ko-chip ko-chip-live">MIT开源</span><a class="ko-inline" href="https://github.com/Kanvis-chen/article-to-avatar-video" target="_blank" rel="noopener">查看仓库 →</a></div>
+            </article>
+            <article class="ko-card">
+              <div class="ko-card-head"><span class="ko-card-icon"><svg class="kv-svg" viewBox="0 0 24 24" width="15" height="15"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="m8 9 4 3-4 3zM14 15h4"/></svg></span><div class="ko-card-title"><strong>Kanvis Studio</strong><span>Codex原生工作台 · 本地渲染 · 无限画布</span></div></div>
+              <p>Skill在Codex中执行后，生成可编辑视频项目，进入Kanvis Studio的无限画布预览、修改并在本机导出MP4。网页这里只做介绍，不运行本地工程。</p>
+              <div class="ko-card-footer"><span class="ko-chip">待开源</span><button class="ko-inline" type="button" data-open-tab="workbench">查看产品规划 →</button></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="ko-section" aria-labelledby="ecosystem-scope">
+          <div class="ko-section-head"><div><h3 id="ecosystem-scope">开放生态分类</h3><p>官方项目与外部Skill都提供公开来源，按图片、PPT和视频任务快速查找</p></div></div>
+          <div class="ko-grid-3">
+            <article class="ko-card"><div class="ko-card-title"><strong>图片与视觉</strong><span>生图 · 封面 · 图文卡片</span></div><p>收录图片生成、视觉设计、小红书图卡和封面制作等开放Skill。</p><div class="ko-card-footer"><button class="ko-inline" type="button" data-open-tab="skill">浏览图片Skill →</button></div></article>
+            <article class="ko-card"><div class="ko-card-title"><strong>PPT与演示</strong><span>幻灯片 · 网页PPT · PPTX</span></div><p>收录内容转演示文稿、网页幻灯片和可编辑PPTX等开放Skill。</p><div class="ko-card-footer"><button class="ko-inline" type="button" data-open-tab="skill">浏览PPT Skill →</button></div></article>
+            <article class="ko-card"><div class="ko-card-title"><strong>视频创作</strong><span>转写 · 剪辑 · 数字人 · 成片</span></div><p>收录视频转写、程序化剪辑、数字人视频与发布质检等开放Skill。</p><div class="ko-card-footer"><button class="ko-inline" type="button" data-open-tab="skill">浏览视频Skill →</button></div></article>
+          </div>
+        </section>
+
+        <section class="ko-section">
+          <div class="ko-partner">
+            <div><strong>提交开放Skill或申请共同维护</strong><p>欢迎提交来源公开、许可证清楚的图片、PPT、视频和创作工具Skill；Kanvis只做来源标注、分类与使用指引，不改变原作者归属。</p></div>
+            <button class="ko-btn ko-btn-primary" type="button" data-action="partner">提交Skill</button>
+          </div>
+        </section>
+      </section>
+
+      <section class="ko-panel" data-panel="skill" hidden>
+        <div class="ko-section-head"><div><h2>Kanvis开放Skill生态</h2><p>免费收录Kanvis官方项目与来源公开的外部Skill，覆盖图片、PPT、视频和内容工作流</p></div><span class="ko-chip ko-chip-live">免费开放</span></div>
+        <div class="ko-skill-toolbar">
+          <div class="ko-skill-search"><svg class="kv-svg" viewBox="0 0 24 24" width="14" height="14"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="skill-search" type="search" placeholder="搜索图片、PPT、视频、字幕、内容……" aria-label="搜索Skill"></div>
+          <div class="ko-skill-filters" role="group" aria-label="Skill开放状态筛选"><button class="ko-skill-filter is-active" type="button" data-skill-filter="all" aria-pressed="true">全部</button><button class="ko-skill-filter" type="button" data-skill-filter="open" aria-pressed="false">已开源</button><button class="ko-skill-filter" type="button" data-skill-filter="planned" aria-pressed="false">待开源</button><button class="ko-skill-filter" type="button" data-skill-filter="ecosystem" aria-pressed="false">开放生态</button></div>
+        </div>
+        <div class="ko-skill-summary"><span>当前显示 <strong data-skill-count>16</strong> 项</span><span>外部Skill保留原作者与许可证；收录不代表Kanvis联合出品</span></div>
+        <div data-skill-groups>
+          <section class="ko-skill-group" data-skill-group><div class="ko-skill-group-head"><h3>Kanvis官方开源路线</h3><p>Kanvis自主维护，未发布项目统一标注待开源</p></div><div class="ko-skill-grid">
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="open" data-skill-search="Kanvis 文稿成片 article avatar video 文章 口播 数字人 视频 分镜 字幕 已开源 官方"><div class="ko-skill-badges"><span class="ko-chip ko-chip-live">Kanvis官方</span><span class="ko-chip ko-chip-live">MIT开源</span><span class="ko-chip">Codex本地运行</span></div><h3>Kanvis 文稿成片 Skill</h3><p>把文章、课程稿和专业知识转成口播脚本、分镜、字幕、素材任务与可编辑视频项目。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/Kanvis-chen/article-to-avatar-video" target="_blank" rel="noopener">查看源码与运行说明 →</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="planned" data-skill-search="Kanvis 内容母稿 真实经历 判断 案例 证据 内容资产 待开源 官方"><div class="ko-skill-badges"><span class="ko-chip ko-chip-live">Kanvis官方</span><span class="ko-chip">待开源</span></div><h3>内容母稿生成 Skill</h3><p>把真实经历、判断、案例和证据整理成可持续拆分、改写与复用的内容母稿。</p></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="planned" data-skill-search="Kanvis 内容系统 审计 选题 内容资产 生产流程 数据复盘 待开源 官方"><div class="ko-skill-badges"><span class="ko-chip ko-chip-live">Kanvis官方</span><span class="ko-chip">待开源</span></div><h3>内容系统审计 Skill</h3><p>检查选题源、内容资产、生产流程和复盘闭环，输出问题清单与改进优先级。</p></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="planned" data-skill-search="Kanvis AI商业系统 诊断 定位 产品 内容 销售 交付 数据 待开源 官方"><div class="ko-skill-badges"><span class="ko-chip ko-chip-live">Kanvis官方</span><span class="ko-chip">待开源</span></div><h3>AI商业系统诊断 Skill</h3><p>用公开问题框架检查定位、产品、内容、销售、交付与数据，形成诊断清单。</p></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="planned" data-skill-search="Kanvis 视频 质量检查 发布门禁 分辨率 音轨 字幕 授权 费用 待开源 官方"><div class="ko-skill-badges"><span class="ko-chip ko-chip-live">Kanvis官方</span><span class="ko-chip">待开源</span></div><h3>视频质量检查与发布门禁</h3><p>检查分辨率、音轨、字幕安全区、素材授权、生成费用和人工审核状态。</p></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="planned" data-skill-search="Kanvis provider adapter 适配器 BYOK Mock 接口 费用 失败恢复 待开源 官方"><div class="ko-skill-badges"><span class="ko-chip ko-chip-live">Kanvis官方</span><span class="ko-chip">待开源</span></div><h3>Provider Adapter Starter</h3><p>提供模型与数字人供应商的接口、Mock、BYOK、费用上限和失败恢复起点。</p></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="planned" data-skill-search="Kanvis Creative Studio 图片 语音 数字人 视频 BYOK 待开源 官方"><div class="ko-skill-badges"><span class="ko-chip ko-chip-live">Kanvis官方</span><span class="ko-chip">待开源</span></div><h3>Kanvis Creative Studio Skill</h3><p>统一编排图片、语音、数字人和视频生成任务，支持BYOK、费用确认与结果回传。</p></article>
+          </div></section>
+
+          <section class="ko-skill-group" data-skill-group><div class="ko-skill-group-head"><h3>图片与视觉Skill</h3><p>生成图片、图文卡片与视觉设计</p></div><div class="ko-skill-grid">
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 图片 生成 Baoyu Image Gen 多模型"><div class="ko-skill-badges"><span class="ko-chip">Baoyu</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>Baoyu Image Gen</h3><p>通过多个模型供应商完成文生图、参考图、尺寸控制和批量生成。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/JimLiu/baoyu-skills" target="_blank" rel="noopener">查看原项目 →</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 图片 小红书 图文卡片 Baoyu XHS Images"><div class="ko-skill-badges"><span class="ko-chip">Baoyu</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>Baoyu XHS Images</h3><p>把内容拆成适合小红书发布的系列图文卡片，并支持风格、布局与配色选择。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/JimLiu/baoyu-skills" target="_blank" rel="noopener">查看原项目 →</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 图片 OpenAI ImageGen Codex 生成 编辑"><div class="ko-skill-badges"><span class="ko-chip">OpenAI Codex</span><span class="ko-chip">官方公开示例</span></div><h3>OpenAI ImageGen Skill</h3><p>用于生成或编辑位图素材，覆盖照片、插画、纹理、透明背景素材和视觉变体。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/openai/codex/blob/main/codex-rs/skills/src/assets/samples/imagegen/SKILL.md" target="_blank" rel="noopener">查看源码 →</a></div></article>
+          </div></section>
+
+          <section class="ko-skill-group" data-skill-group><div class="ko-skill-group-head"><h3>PPT与演示Skill</h3><p>从内容生成幻灯片、网页PPT与演示素材</p></div><div class="ko-skill-grid">
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 PPT slide deck Baoyu 幻灯片"><div class="ko-skill-badges"><span class="ko-chip">Baoyu</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>Baoyu Slide Deck</h3><p>从内容生成专业演示文稿大纲与逐页图片，并可合并为PPTX和PDF。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/JimLiu/baoyu-skills" target="_blank" rel="noopener">查看原项目 →</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 PPT 网页PPT Guizang 歸藏 瑞士 杂志"><div class="ko-skill-badges"><span class="ko-chip">歸藏</span><span class="ko-chip ko-chip-live">AGPL-3.0</span></div><h3>Guizang PPT Skill</h3><p>生成单文件横向翻页网页PPT，提供电子杂志和瑞士国际主义等视觉风格。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/op7418/guizang-ppt-skill" target="_blank" rel="noopener">查看原项目 →</a></div></article>
+          </div></section>
+
+          <section class="ko-skill-group" data-skill-group><div class="ko-skill-group-head"><h3>视频创作Skill</h3><p>视频转写、程序化剪辑与数字人视频生产</p></div><div class="ko-skill-grid">
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 视频 Video Use 剪辑 raw footage Claude Codex"><div class="ko-skill-badges"><span class="ko-chip">Browser Use</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>Video Use</h3><p>让编码Agent整理原始素材、制定剪辑策略、渲染成片并执行自动质量检查。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/browser-use/video-use" target="_blank" rel="noopener">查看原项目 →</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 视频 HeyGen 数字人 avatar video agent"><div class="ko-skill-badges"><span class="ko-chip">HeyGen</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>HeyGen Video Skills</h3><p>围绕数字人创建和视频生产提供Agent Skill工作流，需要使用者自行配置供应商账号。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/heygen-com/skills" target="_blank" rel="noopener">查看原项目 →</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 视频 YouTube transcript 字幕 转写 Baoyu"><div class="ko-skill-badges"><span class="ko-chip">Baoyu</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>Baoyu YouTube Transcript</h3><p>下载YouTube视频字幕、章节和封面，并整理为可继续分析和创作的文本素材。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/JimLiu/baoyu-skills" target="_blank" rel="noopener">查看原项目 →</a></div></article>
+          </div></section>
+
+          <section class="ko-skill-group" data-skill-group><div class="ko-skill-group-head"><h3>发现更多开放Skill</h3><p>继续搜索、核验来源并提交新的开放项目</p></div><div class="ko-skill-grid">
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 find skills 搜索 查找 安装 skills sh"><div class="ko-skill-badges"><span class="ko-chip">开放目录</span></div><h3>Skills.sh</h3><p>Kanvis生态库暂未收录时，可以继续按任务关键词查找其他公开Skill。</p><div class="ko-card-footer"><a class="ko-inline" href="https://skills.sh/" target="_blank" rel="noopener">前往Skills.sh →</a></div></article>
+          </div></section>
+        </div>
+        <div class="ko-skill-empty" data-skill-empty hidden>暂未找到匹配Skill，可以提交新的开放项目。</div>
+        <div class="ko-partner" style="margin-top:12px"><div><strong>提交开放Skill</strong><p>项目需要有公开来源、清楚用途和可核验许可证；收录时保留原作者、原仓库与许可证信息。</p></div><button class="ko-btn ko-btn-primary" type="button" data-action="partner">提交Skill</button></div>
+      </section>
+
+      <section class="ko-panel" data-panel="workbench" hidden>
+        <div class="ko-section-head"><div><h2>Kanvis Studio</h2><p>免费开放的Codex原生视频工作台：Skill生成项目后，在无限画布中预览、编辑并在本机渲染MP4</p></div><span class="ko-chip">本地渲染 · 免费开放</span></div>
+        <div class="ko-facts" style="margin:0 0 12px"><div class="ko-fact"><strong>免费开放</strong><span>基础工作台与开源Skill免费使用</span></div><div class="ko-fact"><strong>本地优先</strong><span>素材、项目和隐私数据默认留在本机</span></div><div class="ko-fact"><strong>Codex内运行</strong><span>网页用于介绍，工作台由本地插件提供</span></div></div>
+        <div class="ko-editor">
+          <div class="ko-editor-main">
+            <div class="ko-editor-toolbar"><strong>Kanvis工作台交互原型</strong><button class="ko-btn" type="button" disabled title="待接入">播放预览</button><button class="ko-btn" type="button" disabled title="待接入" aria-label="撤销"><svg class="kv-svg" viewBox="0 0 24 24" width="13" height="13"><path d="M9 7 4 12l5 5M4 12h10a6 6 0 0 1 6 6"/></svg></button><button class="ko-btn ko-btn-primary" type="button" disabled title="待接入">导出视频</button></div>
+            <div class="ko-stage"><img src="../article-to-avatar-video/assets/workbench-preview.png" alt="Kanvis剪辑工作台画布"></div>
+            <div class="ko-timeline"><div class="ko-time-head"><span>画面轨道 · 3个片段</span><span>00:00 / 00:12</span></div><div class="ko-track"><span class="ko-track-label">特效</span><div class="ko-track-line"><span class="ko-clip ko-clip-a">主标题与观点卡</span><span class="ko-playhead"></span></div></div><div class="ko-track"><span class="ko-track-label">视频</span><div class="ko-track-line"><span class="ko-clip ko-clip-b">数字人 / 真人 PIP</span></div></div><div class="ko-track"><span class="ko-track-label">字幕</span><div class="ko-track-line"><span class="ko-clip ko-clip-c">重点字幕与章节提示</span></div></div></div>
+          </div>
+          <aside class="ko-editor-side">
+            <h3>片段属性</h3>
+            <div class="ko-side-field"><label class="ko-dark-label" for="caption">字幕文案</label><input class="ko-dark-input" id="caption" value="把一篇文章，变成可编辑的视频项目"></div>
+            <div class="ko-side-field"><label class="ko-dark-label" for="opacity">字幕透明度</label><div class="ko-range-row"><input class="ko-range" id="opacity" type="range" min="20" max="100" value="92"><span class="ko-range-value" data-opacity>92%</span></div></div>
+            <div class="ko-side-field"><label class="ko-dark-label" for="scale">画面缩放</label><div class="ko-range-row"><input class="ko-range" id="scale" type="range" min="80" max="120" value="100"><span class="ko-range-value" data-scale>100%</span></div></div>
+            <div class="ko-side-field"><label class="ko-dark-label" for="effect">特效预设</label><select class="ko-dark-input" id="effect"><option>观点强调</option><option>课程章节</option><option>数据证据</option><option>人物介绍</option></select></div>
+            <div class="ko-side-field"><button class="ko-btn ko-btn-primary" type="button" disabled title="待接入">保存片段样式</button></div>
+            <p class="ko-side-note">当前网页只展示交互原型。实际工作台在Codex内运行，负责本地项目、基础编辑和导出；AI生成、云端渲染与第三方供应商调用按实际成本单独确认。</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <div class="ko-modal" data-consult-modal hidden>
+      <div class="ko-modal-backdrop" data-modal-close></div>
+      <section class="ko-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="ko-consult-title">
+        <div class="ko-modal-head">
+          <div><h2 id="ko-consult-title" data-consult-title>提交开放生态申请</h2><p>填写后会在本地生成一份结构化说明，不会自动上传或提交。</p></div>
+          <button class="ko-icon-btn ko-modal-close" type="button" data-modal-close title="关闭" aria-label="关闭">×</button>
+        </div>
+        <form class="ko-modal-body" data-consult-form>
+          <div class="ko-modal-grid">
+            <div class="ko-modal-field"><label class="ko-label" for="consult-type">申请方向</label><select class="ko-select" id="consult-type" data-consult-type><option value="partner">提交开放Skill</option><option value="submit-demand">功能需求与开源共创</option><option value="web-trial">免费工具内测</option></select></div>
+            <div class="ko-modal-field"><label class="ko-label" for="consult-background">你的身份或项目</label><input class="ko-input" id="consult-background" data-consult-background placeholder="如：Skill作者、开源维护者、个人创作者"></div>
+            <div class="ko-modal-field is-wide"><label class="ko-label" for="consult-goal">Skill链接或共创需求</label><textarea class="ko-textarea" id="consult-goal" data-consult-goal placeholder="请提供公开仓库、许可证、功能说明，或描述希望共同解决的问题"></textarea></div>
+            <div class="ko-modal-field is-wide"><label class="ko-label" for="consult-contact">方便联系你的方式</label><input class="ko-input" id="consult-contact" data-consult-contact placeholder="微信、邮箱或其他联系方式"></div>
+          </div>
+          <p class="ko-modal-note">页面不会发送这些信息。生成后复制申请说明，再通过Kanvis主页公布的联系方式发送。</p>
+          <div class="ko-modal-actions"><button class="ko-btn" type="button" data-modal-close>取消</button><button class="ko-btn ko-btn-primary" type="submit">生成申请说明</button></div>
+          <div class="ko-consult-result" data-consult-result hidden><pre data-consult-output></pre><div class="ko-modal-actions"><button class="ko-btn ko-btn-primary" type="button" data-copy-consult>复制申请说明</button></div></div>
+        </form>
+      </section>
+    </div>
+    <div class="ko-toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <script>
+    (() => {
+      const app = document.querySelector('[data-kanvis-open]');
+      if (!app || app.dataset.mounted === 'true') return;
+      app.dataset.mounted = 'true';
+      const tabs = [...app.querySelectorAll('[data-tab]')];
+      const panels = [...app.querySelectorAll('[data-panel]')];
+      const toast = app.querySelector('.ko-toast');
+      let toastTimer;
+
+      const showToast = (message) => {
+        toast.textContent = message;
+        toast.classList.add('is-visible');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 2200);
+      };
+
+      const openTab = (name) => {
+        tabs.forEach((tab) => {
+          const active = tab.dataset.tab === name;
+          tab.classList.toggle('is-active', active);
+          tab.setAttribute('aria-selected', String(active));
+        });
+        panels.forEach((panel) => { panel.hidden = panel.dataset.panel !== name; });
+        const nextUrl = name === 'overview' ? window.location.pathname : `${window.location.pathname}?tab=${encodeURIComponent(name)}`;
+        window.history.replaceState(null, '', nextUrl);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      const requestedTab = new URLSearchParams(window.location.search).get('tab');
+      if (requestedTab && tabs.some((tab) => tab.dataset.tab === requestedTab)) openTab(requestedTab);
+
+      tabs.forEach((tab) => tab.addEventListener('click', () => openTab(tab.dataset.tab)));
+      app.querySelectorAll('[data-open-tab]').forEach((button) => button.addEventListener('click', () => openTab(button.dataset.openTab)));
+
+      const actionLabels = {
+        'web-trial': '免费工具内测',
+        'submit-demand': '功能需求与开源共创',
+        partner: '提交开放Skill'
+      };
+
+      const consultModal = app.querySelector('[data-consult-modal]');
+      const consultForm = app.querySelector('[data-consult-form]');
+      const consultType = app.querySelector('[data-consult-type]');
+      const consultBackground = app.querySelector('[data-consult-background]');
+      const consultGoal = app.querySelector('[data-consult-goal]');
+      const consultContact = app.querySelector('[data-consult-contact]');
+      const consultResult = app.querySelector('[data-consult-result]');
+      const consultOutput = app.querySelector('[data-consult-output]');
+      const consultActions = new Set(['web-trial', 'submit-demand', 'partner']);
+
+      const openConsultModal = (action) => {
+        consultType.value = consultActions.has(action) ? action : 'submit-demand';
+        app.querySelector('[data-consult-title]').textContent = actionLabels[action] || '提交开放生态申请';
+        consultResult.hidden = true;
+        consultOutput.textContent = '';
+        consultModal.hidden = false;
+        document.body.classList.add('ko-modal-open');
+        consultBackground.focus();
+      };
+
+      const closeConsultModal = () => {
+        consultModal.hidden = true;
+        document.body.classList.remove('ko-modal-open');
+      };
+
+      app.querySelectorAll('[data-modal-close]').forEach((button) => button.addEventListener('click', closeConsultModal));
+      document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && !consultModal.hidden) closeConsultModal(); });
+
+      consultForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const direction = consultType.options[consultType.selectedIndex].text;
+        const background = consultBackground.value.trim() || '待补充';
+        const goal = consultGoal.value.trim() || '待补充';
+        const contact = consultContact.value.trim() || '待补充';
+        consultOutput.textContent = `Kanvis开放生态申请\n\n申请方向：${direction}\n身份或项目：${background}\nSkill链接或共创需求：${goal}\n联系方式：${contact}`;
+        consultResult.hidden = false;
+        app.dispatchEvent(new CustomEvent('kanvis:ecosystem-application-prepared', { bubbles: true, detail: { direction, background, goal, contact } }));
+      });
+
+      app.querySelector('[data-copy-consult]').addEventListener('click', async () => {
+        const value = consultOutput.textContent;
+        if (!value) return;
+        try {
+          await navigator.clipboard.writeText(value);
+        } catch (_) {
+          const helper = document.createElement('textarea');
+          helper.value = value;
+          helper.setAttribute('readonly', '');
+          helper.style.position = 'fixed';
+          helper.style.opacity = '0';
+          document.body.appendChild(helper);
+          helper.select();
+          document.execCommand('copy');
+          helper.remove();
+        }
+        showToast('申请说明已复制');
+      });
+
+      app.querySelectorAll('[data-action]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const action = button.dataset.action;
+          if (action === 'theme') {
+            document.body.classList.toggle('is-dark');
+            showToast(document.body.classList.contains('is-dark') ? '已切换深色主题' : '已切换浅色主题');
+            return;
+          }
+          if (consultActions.has(action)) {
+            openConsultModal(action);
+            return;
+          }
+          const label = actionLabels[action] || action;
+          app.dispatchEvent(new CustomEvent('kanvis:action', { bubbles: true, detail: { action, label } }));
+          showToast(`已发起：${label}`);
+        });
+      });
+
+      const skillSearchInput = app.querySelector('#skill-search');
+      const skillCards = [...app.querySelectorAll('[data-skill-card]')];
+      const skillGroups = [...app.querySelectorAll('[data-skill-group]')];
+      const skillFilterButtons = [...app.querySelectorAll('[data-skill-filter]')];
+      const skillCount = app.querySelector('[data-skill-count]');
+      const skillEmpty = app.querySelector('[data-skill-empty]');
+      let activeSkillFilter = 'all';
+
+      const updateSkillResults = () => {
+        const query = skillSearchInput.value.trim().toLowerCase();
+        let visibleCount = 0;
+        skillCards.forEach((card) => {
+          const matchesFilter = activeSkillFilter === 'all' || card.dataset.skillType === activeSkillFilter;
+          const searchText = `${card.dataset.skillSearch || ''} ${card.textContent}`.toLowerCase();
+          const visible = matchesFilter && (!query || searchText.includes(query));
+          card.hidden = !visible;
+          if (visible) visibleCount += 1;
+        });
+        skillGroups.forEach((group) => {
+          group.hidden = ![...group.querySelectorAll('[data-skill-card]')].some((card) => !card.hidden);
+        });
+        skillCount.textContent = String(visibleCount);
+        skillEmpty.hidden = visibleCount !== 0;
+      };
+
+      skillSearchInput.addEventListener('input', updateSkillResults);
+      skillFilterButtons.forEach((button) => button.addEventListener('click', () => {
+        activeSkillFilter = button.dataset.skillFilter;
+        skillFilterButtons.forEach((item) => {
+          const active = item === button;
+          item.classList.toggle('is-active', active);
+          item.setAttribute('aria-pressed', String(active));
+        });
+        updateSkillResults();
+      }));
+
+      const opacity = app.querySelector('#opacity');
+      const scale = app.querySelector('#scale');
+      opacity.addEventListener('input', () => { app.querySelector('[data-opacity]').textContent = `${opacity.value}%`; });
+      scale.addEventListener('input', () => { app.querySelector('[data-scale]').textContent = `${scale.value}%`; });
+    })();
+  </script>
+</body>
+</html>
