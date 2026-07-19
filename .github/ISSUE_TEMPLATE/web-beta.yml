@@ -1,13 +1,13 @@
-name: Kanvis 网页版内测申请
-description: 申请参与 Kanvis 网页版的早期体验与反馈
-title: "[Web Beta] "
+name: Kanvis 产品内测群申请
+description: 申请参与 Kanvis 产品的早期体验与反馈
+title: "[Product Beta] "
 labels:
   - web-beta
 body:
   - type: markdown
     attributes:
       value: |
-        感谢你申请 Kanvis 网页版内测。申请内容会公开显示，请勿填写手机号、微信、客户资料或其他敏感信息。
+        感谢你申请加入 Kanvis 产品内测群。申请内容会公开显示，请勿填写手机号、微信、客户资料或其他敏感信息。
 
   - type: dropdown
     id: role
@@ -27,7 +27,7 @@ body:
     attributes:
       label: 你最希望解决的真实任务
       description: 请描述一个具体任务，例如内容分析、图片生成、视频生成或把 Skill 结果送入 Kanvis Studio。
-      placeholder: 我目前在做……，最希望网页版帮助我……
+      placeholder: 我目前在做……，最希望 Kanvis 产品帮助我……
     validations:
       required: true
 

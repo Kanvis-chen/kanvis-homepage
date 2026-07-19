@@ -28,7 +28,7 @@ The homepage is a static HTML site. It does not need an application server or da
 
 - `/`, `/open/`, and the public `Kanvis Video` repository return HTTP 200.
 - HTTPS is enabled and the deployed homepage assets, navigation, social metadata, and paid-consultation QR code have passed browser checks.
-- The homepage beta CTA points to the public Feishu form `https://my.feishu.cn/share/base/shrcnLa2i2JpSeCvYqpPoDDJw7e`; submissions are stored in the private `Kanvis 产品内测申请` Base.
+- The homepage and open-ecosystem beta CTAs point to the public Feishu form `https://my.feishu.cn/share/base/shrcnLa2i2JpSeCvYqpPoDDJw7e`; submissions are stored in the private `Kanvis 产品内测群申请` Base.
 - An independent Check-Host probe returned HTTP 200 from 12/12 overseas nodes.
 - Mainland China has not yet passed an independent multi-carrier probe. GitHub Pages remains the working launch endpoint, but it must not be described as a guaranteed mainland delivery service.
 - EdgeOne documents that Pages in the global availability zone excludes mainland China. Mainland acceleration requires a compliant, ICP-filed custom domain. Therefore a free platform subdomain alone cannot honestly guarantee both mainland and overseas delivery.
