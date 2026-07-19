@@ -134,9 +134,9 @@
     .ko-service-step span { display: block; color: var(--faint); font: 650 9px/1.4 var(--mono); }
     .ko-service-step strong { display: block; margin-top: 4px; font-size: 11px; }
     .ko-service-step p { margin-top: 4px; }
-    .ko-support-band { display: grid; grid-template-columns: minmax(190px, .75fr) minmax(0, 1.65fr) auto; gap: 18px; align-items: center; padding: 15px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .ko-support-copy h3 { margin: 0; font-size: 14px; }
-    .ko-support-copy p { margin: 4px 0 0; color: var(--muted); font-size: 9px; }
+    .ko-support-band { display: grid; grid-template-columns: minmax(190px, .75fr) minmax(0, 1.65fr) auto; gap: 18px; align-items: center; padding: 18px; border: 1px solid var(--line); border-left: 3px solid var(--teal); border-radius: var(--radius-card); background: var(--surface); box-shadow: 0 10px 30px rgba(28, 35, 45, 0.06); }
+    .ko-support-copy h3 { margin: 0; font-size: 15px; }
+    .ko-support-copy p { margin: 5px 0 0; color: var(--muted); font-size: 9px; line-height: 1.65; }
     .ko-support-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .ko-support-option { min-width: 0; padding: 2px 14px; border-left: 1px solid var(--line); }
     .ko-support-option span { display: block; color: var(--teal); font: 700 11px/1.4 var(--mono); }
@@ -335,13 +335,13 @@
         </section>
 
         <section class="ko-section ko-support-band" aria-labelledby="support-title">
-          <div class="ko-support-copy"><h3 id="support-title">进一步支持</h3><p>从快速诊断、系统学习到28天落地陪跑，根据当前问题选择合适的支持。</p></div>
+          <div class="ko-support-copy"><h3 id="support-title">需要进一步支持？</h3><p>从快速诊断、系统学习到28天落地陪跑，根据当前问题选择合适的支持。</p></div>
           <div class="ko-support-options" aria-label="Kanvis 付费支持">
             <div class="ko-support-option"><span>¥299</span><strong>经营问题快诊</strong></div>
             <div class="ko-support-option"><span>¥980</span><strong>AI 内容系统实操课</strong></div>
             <div class="ko-support-option"><span>¥6,980</span><strong>28天 AI 商业落地陪跑</strong></div>
           </div>
-          <a class="ko-btn" href="../#services">查看课程与服务 →</a>
+          <a class="ko-btn ko-btn-primary" href="../#services">查看课程与服务 →</a>
         </section>
 
         <section class="ko-section" aria-labelledby="ecosystem-scope">
