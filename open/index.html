@@ -356,7 +356,7 @@
         <section class="ko-section">
           <div class="ko-partner">
             <div><strong>开放Skill收录与共同维护</strong><p>欢迎推荐来源公开、许可证清楚的图片、PPT、视频和创作工具Skill；Kanvis只做来源标注、分类与使用指引，不改变原作者归属。</p></div>
-            <button class="ko-btn ko-btn-primary" type="button" data-action="partner">生成提交说明</button>
+            <button class="ko-btn ko-btn-primary" type="button" data-action="partner">填写 GitHub 提交</button>
           </div>
         </section>
       </section>
@@ -401,7 +401,7 @@
           </div></section>
         </div>
         <div class="ko-skill-empty" data-skill-empty hidden>暂未找到匹配Skill，可以生成一份开放项目提交说明。</div>
-        <div class="ko-partner" style="margin-top:12px"><div><strong>开放Skill提交说明</strong><p>项目需要有公开来源、清楚用途和可核验许可证；收录时保留原作者、原仓库与许可证信息。</p></div><button class="ko-btn ko-btn-primary" type="button" data-action="partner">生成提交说明</button></div>
+        <div class="ko-partner" style="margin-top:12px"><div><strong>开放Skill提交说明</strong><p>项目需要有公开来源、清楚用途和可核验许可证；收录时保留原作者、原仓库与许可证信息。</p></div><button class="ko-btn ko-btn-primary" type="button" data-action="partner">填写 GitHub 提交</button></div>
       </section>
 
       <section class="ko-panel" data-panel="workbench" hidden>
@@ -429,19 +429,19 @@
       <div class="ko-modal-backdrop" data-modal-close></div>
       <section class="ko-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="ko-consult-title">
         <div class="ko-modal-head">
-          <div><h2 id="ko-consult-title" data-consult-title>生成开放生态提交说明</h2><p>填写后会在本地生成一份可复制的结构化说明，不会自动发送。</p></div>
+          <div><h2 id="ko-consult-title" data-consult-title>生成开放生态提交说明</h2><p>填写后生成 GitHub Issue 草稿，前往 GitHub 确认后才会正式提交。</p></div>
           <button class="ko-icon-btn ko-modal-close" type="button" data-modal-close title="关闭" aria-label="关闭">×</button>
         </div>
         <form class="ko-modal-body" data-consult-form>
           <div class="ko-modal-grid">
             <div class="ko-modal-field"><label class="ko-label" for="consult-type">提交方向</label><select class="ko-select" id="consult-type" data-consult-type><option value="partner">开放Skill收录</option><option value="submit-demand">功能需求与开源共创</option></select></div>
-            <div class="ko-modal-field"><label class="ko-label" for="consult-background">你的身份或项目</label><input class="ko-input" id="consult-background" data-consult-background placeholder="如：Skill作者、开源维护者、个人创作者"></div>
-            <div class="ko-modal-field is-wide"><label class="ko-label" for="consult-goal">Skill链接或共创需求</label><textarea class="ko-textarea" id="consult-goal" data-consult-goal placeholder="请提供公开仓库、许可证、功能说明，或描述希望共同解决的问题"></textarea></div>
-            <div class="ko-modal-field is-wide"><label class="ko-label" for="consult-contact">可公开的联系方式（选填）</label><input class="ko-input" id="consult-contact" data-consult-contact placeholder="如：GitHub 用户名或项目主页"></div>
+            <div class="ko-modal-field"><label class="ko-label" for="consult-background">你的身份或项目（必填）</label><input class="ko-input" id="consult-background" data-consult-background required maxlength="100" placeholder="如：Skill作者、开源维护者、个人创作者"></div>
+            <div class="ko-modal-field is-wide"><label class="ko-label" for="consult-goal">Skill链接或共创需求（必填）</label><textarea class="ko-textarea" id="consult-goal" data-consult-goal required maxlength="3000" placeholder="请提供公开仓库、许可证、功能说明，或描述希望共同解决的问题"></textarea></div>
+            <div class="ko-modal-field is-wide"><label class="ko-label" for="consult-contact">可公开的联系方式（选填）</label><input class="ko-input" id="consult-contact" data-consult-contact maxlength="200" placeholder="如：GitHub 用户名或项目主页"></div>
           </div>
-          <p class="ko-modal-note">页面不会自动发送这些信息。请确认说明中不含隐私或密钥，再复制到<a href="https://github.com/Kanvis-chen/kanvis-homepage/issues/new" target="_blank" rel="noopener">GitHub Issue</a>。</p>
-          <div class="ko-modal-actions"><button class="ko-btn" type="button" data-modal-close>取消</button><button class="ko-btn ko-btn-primary" type="submit">生成提交说明</button></div>
-          <div class="ko-consult-result" data-consult-result hidden><pre data-consult-output></pre><div class="ko-modal-actions"><button class="ko-btn ko-btn-primary" type="button" data-copy-consult>复制提交说明</button></div></div>
+          <p class="ko-modal-note">提交内容将公开显示。请勿填写手机号、微信、客户资料、API Key 或其他隐私与密钥。</p>
+          <div class="ko-modal-actions"><button class="ko-btn" type="button" data-modal-close>取消</button><button class="ko-btn ko-btn-primary" type="submit">生成 GitHub 提交内容</button></div>
+          <div class="ko-consult-result" data-consult-result hidden><pre data-consult-output></pre><div class="ko-modal-actions"><button class="ko-btn" type="button" data-copy-consult>复制内容</button><a class="ko-btn ko-btn-primary" data-github-submit href="https://github.com/Kanvis-chen/kanvis-homepage/issues/new" target="_blank" rel="noopener">前往 GitHub 确认提交 →</a></div></div>
         </form>
       </section>
     </div>
@@ -496,6 +496,7 @@
       const consultContact = app.querySelector('[data-consult-contact]');
       const consultResult = app.querySelector('[data-consult-result]');
       const consultOutput = app.querySelector('[data-consult-output]');
+      const githubSubmit = app.querySelector('[data-github-submit]');
       const consultActions = new Set(['submit-demand', 'partner']);
 
       const openConsultModal = (action) => {
@@ -503,6 +504,7 @@
         app.querySelector('[data-consult-title]').textContent = actionLabels[action] || '生成开放生态提交说明';
         consultResult.hidden = true;
         consultOutput.textContent = '';
+        githubSubmit.href = 'https://github.com/Kanvis-chen/kanvis-homepage/issues/new';
         consultModal.hidden = false;
         document.body.classList.add('ko-modal-open');
         consultBackground.focus();
@@ -519,10 +521,14 @@
       consultForm.addEventListener('submit', (event) => {
         event.preventDefault();
         const direction = consultType.options[consultType.selectedIndex].text;
-        const background = consultBackground.value.trim() || '待补充';
-        const goal = consultGoal.value.trim() || '待补充';
+        const background = consultBackground.value.trim();
+        const goal = consultGoal.value.trim();
         const contact = consultContact.value.trim() || '未填写';
-        consultOutput.textContent = `Kanvis开放生态提交说明\n\n提交方向：${direction}\n身份或项目：${background}\nSkill链接或共创需求：${goal}\n可公开的联系方式：${contact}`;
+        const titlePrefix = consultType.value === 'partner' ? 'Skill 收录' : '共创需求';
+        const issueTitle = `[${titlePrefix}] ${background}`;
+        const issueBody = `## 提交方向\n${direction}\n\n## 身份或项目\n${background}\n\n## Skill 链接或共创需求\n${goal}\n\n## 可公开的联系方式\n${contact}\n\n---\n由 Kanvis 开放生态提交助手生成。`;
+        consultOutput.textContent = `${issueTitle}\n\n${issueBody}`;
+        githubSubmit.href = `https://github.com/Kanvis-chen/kanvis-homepage/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
         consultResult.hidden = false;
         app.dispatchEvent(new CustomEvent('kanvis:ecosystem-application-prepared', { bubbles: true, detail: { direction, background, goal, contact } }));
       });
