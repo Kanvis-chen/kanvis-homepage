@@ -1,0 +1,61 @@
+name: Kanvis 网页版内测申请
+description: 申请参与 Kanvis 网页版的早期体验与反馈
+title: "[Web Beta] "
+labels:
+  - web-beta
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你申请 Kanvis 网页版内测。申请内容会公开显示，请勿填写手机号、微信、客户资料或其他敏感信息。
+
+  - type: dropdown
+    id: role
+    attributes:
+      label: 你的使用角色
+      options:
+        - 内容创作者或知识 IP
+        - 咨询师、教练或课程主理人
+        - 企业团队成员
+        - AI 产品或技术从业者
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: 你最希望解决的真实任务
+      description: 请描述一个具体任务，例如内容分析、图片生成、视频生成或把 Skill 结果送入 Kanvis Studio。
+      placeholder: 我目前在做……，最希望网页版帮助我……
+    validations:
+      required: true
+
+  - type: textarea
+    id: workflow
+    attributes:
+      label: 你现在怎么完成这个任务
+      description: 简要说明当前使用的工具、步骤和最耗时间的环节。
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: expectations
+    attributes:
+      label: 你最希望优先体验的能力
+      options:
+        - label: 内容或视频分析
+        - label: AI 图片生成
+        - label: AI 视频生成
+        - label: Skill 任务执行与结果管理
+        - label: 把项目送入 Kanvis Studio 继续编辑
+
+  - type: checkboxes
+    id: agreement
+    attributes:
+      label: 内测说明
+      options:
+        - label: 我理解这是早期内测申请，不代表立即获得名额，也不承诺功能和开放时间。
+          required: true
+        - label: 我愿意在获得体验资格后提交真实反馈。
+          required: true

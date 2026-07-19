@@ -308,6 +308,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .button-primary:hover { background: var(--teal-dark); }
 .button-secondary { border-color: #aab4b0; background: rgba(255, 255, 255, .78); }
 .button-secondary:hover { border-color: var(--ink); background: #fff; }
+.button-beta { border-color: var(--teal); background: transparent; color: var(--teal-dark); }
+.button-beta:hover { background: var(--teal); color: #fff; }
 .button-light { border-color: #fff; background: #fff; color: var(--black); }
 .button-light:hover { background: var(--lime); border-color: var(--lime); }
 
