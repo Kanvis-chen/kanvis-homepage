@@ -17,12 +17,14 @@ status: review
 The homepage is a static HTML site. It does not need an application server or database for the current release.
 
 - Source repository: `Kanvis-chen/kanvis-homepage`
-- Production hosting: EdgeOne Makers free edition
-- Production project name: `kanvis-homepage`
-- Temporary production domain: the EdgeOne platform domain assigned after deployment
+- Current public hosting: GitHub Pages free static hosting
+- Current public URL: `https://kanvis-chen.github.io/kanvis-homepage/`
+- Target formal hosting: EdgeOne Makers free edition, pending EdgeOne account login
+- Target production project name: `kanvis-homepage`
+- Target production domain: the EdgeOne platform domain assigned after deployment
 - Future branded domain: a purchased custom domain connected by CNAME
 
-The Git repository is the source of truth. EdgeOne is the delivery layer. GitHub Pages is not the primary production host because mainland China accessibility is not predictable enough for a commercial homepage.
+The Git repository is the source of truth. GitHub Pages is the current immediate public endpoint. EdgeOne will become the primary delivery layer after account authorization because mainland China accessibility through GitHub Pages is not predictable enough for a commercial homepage.
 
 ## Public naming contract
 
@@ -39,8 +41,8 @@ The Git repository is the source of truth. EdgeOne is the delivery layer. GitHub
 ## Deploy from this directory
 
 ```powershell
-edgeone login --site china
-edgeone makers deploy .
+edgeone login --site global
+edgeone makers deploy . --name kanvis-homepage --env production --area global
 ```
 
 After deployment:
