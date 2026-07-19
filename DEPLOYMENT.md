@@ -24,6 +24,14 @@ The homepage is a static HTML site. It does not need an application server or da
 - Target production domain: the EdgeOne platform domain assigned after deployment
 - Future branded domain: a purchased custom domain connected by CNAME
 
+### Verification on 2026-07-19
+
+- `/`, `/open/`, and the public `Kanvis Video` repository return HTTP 200.
+- HTTPS is enabled and the deployed homepage assets, navigation, social metadata, and paid-consultation QR code have passed browser checks.
+- An independent Check-Host probe returned HTTP 200 from 12/12 overseas nodes.
+- Mainland China has not yet passed an independent multi-carrier probe. GitHub Pages remains the working launch endpoint, but it must not be described as a guaranteed mainland delivery service.
+- EdgeOne documents that Pages in the global availability zone excludes mainland China. Mainland acceleration requires a compliant, ICP-filed custom domain. Therefore a free platform subdomain alone cannot honestly guarantee both mainland and overseas delivery.
+
 The Git repository is the source of truth. GitHub Pages is the current immediate public endpoint. EdgeOne will become the primary delivery layer after account authorization because mainland China accessibility through GitHub Pages is not predictable enough for a commercial homepage.
 
 ## Public naming contract
