@@ -47,7 +47,7 @@
     }
     * { box-sizing: border-box; letter-spacing: 0; }
     html { background: var(--bg); }
-    body { margin: 0; background: var(--bg); color: var(--text); font: 13px/1.55 var(--font); }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.6 var(--font); }
     button, textarea, select, input { font: inherit; }
     button { color: inherit; }
     .kv-svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
@@ -63,8 +63,8 @@
     .ko-brand-link { display: flex; align-items: center; gap: 10px; min-width: 210px; color: inherit; text-decoration: none; }
     .ko-brand-link:hover .ko-brand-copy strong { color: var(--teal); }
     .ko-mark { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 6px; color: #fff; background: var(--teal); font: 750 13px/1 var(--mono); }
-    .ko-brand-copy strong { display: block; font-size: 13px; }
-    .ko-brand-copy span { display: block; color: var(--faint); font-size: 9px; }
+    .ko-brand-copy strong { display: block; font-size: 14px; }
+    .ko-brand-copy span { display: block; color: var(--faint); font-size: 11px; }
     .ko-tabs { display: flex; align-self: stretch; gap: 2px; }
     .ko-tab { position: relative; display: flex; align-items: center; gap: 7px; padding: 0 14px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
     .ko-tab::after { content: ""; position: absolute; right: 12px; bottom: -1px; left: 12px; height: 2px; background: transparent; }
@@ -72,16 +72,16 @@
     .ko-tab.is-active { color: var(--teal); font-weight: 650; }
     .ko-tab.is-active::after { background: var(--teal); }
     .ko-top-actions { display: flex; gap: 7px; margin-left: auto; }
-    .ko-icon-btn, .ko-btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 32px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); cursor: pointer; }
-    .ko-icon-btn { width: 32px; padding: 0; }
-    .ko-btn { padding: 0 11px; color: inherit; font-size: 11px; text-decoration: none; }
+    .ko-icon-btn, .ko-btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 34px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); cursor: pointer; }
+    .ko-icon-btn { width: 34px; padding: 0; }
+    .ko-btn { padding: 0 12px; color: inherit; font-size: 12px; text-decoration: none; }
     .ko-btn:hover, .ko-icon-btn:hover { border-color: var(--teal); color: var(--teal); }
     .ko-btn-primary { border-color: var(--teal); color: #fff; background: var(--teal); }
     .ko-btn-primary:hover { color: #fff; filter: brightness(0.94); }
       .ko-btn-quiet { background: var(--surface-2); }
       .ko-home-link { white-space: nowrap; }
-      .ko-intro-author { margin: 9px 0 0; color: var(--muted); font-size: 10px; }
-      .ko-intro-author a { color: var(--teal-dark); font-weight: 700; text-decoration: none; }
+      .ko-intro-author { margin: 9px 0 0; color: var(--muted); font-size: 12px; }
+      .ko-intro-author a { color: var(--teal); font-weight: 700; text-decoration: none; }
       .ko-intro-author a:hover { text-decoration: underline; text-underline-offset: 3px; }
     .ko-main { width: min(1220px, calc(100% - 32px)); margin: 0 auto; padding: 22px 0 44px; }
     .ko-panel[hidden] { display: none; }
@@ -89,140 +89,180 @@
     .ko-section:first-child { margin-top: 0; }
     .ko-section-head { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 10px; }
     .ko-section-head h2, .ko-section-head h3 { margin: 0; }
-    .ko-section-head h2 { font-size: 20px; }
-    .ko-section-head h3 { font-size: 13px; }
-    .ko-section-head p { margin: 3px 0 0; color: var(--muted); font-size: 10px; }
+    .ko-section-head h2 { font-size: 22px; }
+    .ko-section-head h3 { font-size: 15px; }
+    .ko-section-head p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
     .ko-intro {
       display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(380px, 0.95fr); gap: 20px;
       padding: 22px; border: 1px solid var(--line); border-left: 3px solid var(--teal); border-radius: var(--radius-card); background: var(--surface); box-shadow: var(--shadow);
     }
-    .ko-kicker { display: flex; align-items: center; gap: 7px; color: var(--teal); font-size: 10px; font-weight: 700; }
-    .ko-intro h1 { margin: 9px 0 8px; font-size: 30px; line-height: 1.2; }
-    .ko-intro-copy { max-width: 640px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.75; }
+    .ko-kicker { display: flex; align-items: center; gap: 7px; color: var(--teal); font-size: 11px; font-weight: 700; }
+    .ko-intro h1 { margin: 9px 0 8px; font-size: 32px; line-height: 1.2; }
+    .ko-intro-copy { max-width: 640px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.75; }
     .ko-intro-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
     .ko-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; margin-top: 18px; }
     .ko-fact { padding: 9px; border-left: 2px solid var(--line); }
-    .ko-fact strong { display: block; font-size: 11px; }
-    .ko-fact span { color: var(--faint); font-size: 9px; }
+    .ko-fact strong { display: block; font-size: 13px; }
+    .ko-fact span { color: var(--faint); font-size: 11px; }
+    .ko-how { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 16px 0 20px; }
+    .ko-how-card { background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; padding: 13px 12px; }
+    .ko-how-card .ko-how-no { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: var(--text); color: var(--surface); font-size: 11px; font-weight: 700; margin-bottom: 9px; }
+    .ko-how-card strong { display: block; font-size: 13px; margin-bottom: 6px; }
+    .ko-how-card p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
     .ko-preview-frame { position: relative; min-height: 230px; overflow: hidden; border: 1px solid #252b32; border-radius: var(--radius); background: #0c0f12; }
     .ko-preview-frame img { width: 100%; height: 100%; min-height: 230px; object-fit: cover; object-position: center; display: block; }
-    .ko-preview-label { position: absolute; top: 10px; left: 10px; padding: 5px 7px; border: 1px solid rgba(255,255,255,0.2); border-radius: 5px; color: #fff; background: rgba(10,13,16,0.78); font-size: 9px; }
+    .ko-preview-label { position: absolute; top: 10px; left: 10px; padding: 5px 8px; border: 1px solid rgba(255,255,255,0.2); border-radius: 5px; color: #fff; background: rgba(10,13,16,0.78); font-size: 11px; }
     .ko-grid-2, .ko-grid-3, .ko-grid-4 { display: grid; gap: 9px; }
     .ko-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .ko-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .ko-grid-4 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .ko-card { padding: 14px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .ko-card { padding: 15px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
     .ko-card-head { display: flex; align-items: center; gap: 9px; }
-    .ko-card-icon { width: 29px; height: 29px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 5px; color: var(--teal); background: var(--teal-soft); }
+    .ko-card-icon { width: 30px; height: 30px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 5px; color: var(--teal); background: var(--teal-soft); }
     .ko-card-title { min-width: 0; }
-    .ko-card-title strong { display: block; font-size: 12px; }
-    .ko-card-title span { display: block; color: var(--faint); font-size: 9px; }
-    .ko-card p { margin: 9px 0 0; color: var(--muted); font-size: 10px; line-height: 1.65; }
+    .ko-card-title strong { display: block; font-size: 14px; }
+    .ko-card-title span { display: block; color: var(--faint); font-size: 11px; }
+    .ko-card p { margin: 10px 0 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
     .ko-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 12px; }
-    .ko-chip { display: inline-flex; align-items: center; gap: 5px; min-height: 21px; padding: 0 7px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--surface-2); font-size: 8px; white-space: nowrap; }
+    .ko-chip { display: inline-flex; align-items: center; gap: 5px; min-height: 22px; padding: 0 8px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--surface-2); font-size: 11px; white-space: nowrap; }
     .ko-chip::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
     .ko-chip-live { color: var(--teal); border-color: color-mix(in srgb, var(--teal) 30%, var(--line)); background: var(--teal-soft); }
     .ko-chip-credit { color: var(--amber); border-color: color-mix(in srgb, var(--amber) 30%, var(--line)); background: var(--amber-soft); }
-    .ko-inline { padding: 0; border: 0; color: var(--blue); background: transparent; font-size: 9px; cursor: pointer; }
+    .ko-chip-planned { color: var(--faint); border-color: var(--line); border-style: dashed; background: transparent; }
+    .ko-inline { padding: 0; border: 0; color: var(--blue); background: transparent; font-size: 12px; cursor: pointer; }
     .ko-inline:hover { text-decoration: underline; }
+    .ko-skill-card[data-skill-type="planned"] { border-style: dashed; opacity: 0.92; background: color-mix(in srgb, var(--surface) 92%, var(--surface-2)); }
+    .ko-start-band { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 20px; border: 1px solid var(--line); border-left: 3px solid var(--teal); border-radius: var(--radius-card); background: var(--surface); box-shadow: 0 10px 30px rgba(28, 35, 45, 0.06); }
+    .ko-start-copy h3 { margin: 0 0 6px; font-size: 16px; }
+    .ko-start-copy p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
+    .ko-start-copy code { display: inline-block; margin-top: 10px; padding: 7px 10px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface-2); color: var(--text); font: 12px/1.5 var(--mono); }
+    .ko-start-actions { display: flex; flex-direction: column; gap: 8px; min-width: 200px; }
+    .ko-workbench-svg { width: 100%; max-width: 880px; height: auto; display: block; border: 1px solid #252c34; box-shadow: 0 16px 50px rgba(0,0,0,0.35); border-radius: 4px; background: #090c0f; }
     .ko-service-band { display: grid; grid-template-columns: 0.75fr 1.25fr; gap: 14px; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--surface); }
     .ko-service-copy h3 { margin: 0 0 6px; font-size: 16px; }
-    .ko-service-copy p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.65; }
+    .ko-service-copy p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
     .ko-service-path { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .ko-service-step { padding: 10px; border-right: 1px solid var(--line); }
     .ko-service-step:last-child { border-right: 0; }
-    .ko-service-step span { display: block; color: var(--faint); font: 650 9px/1.4 var(--mono); }
-    .ko-service-step strong { display: block; margin-top: 4px; font-size: 11px; }
+    .ko-service-step span { display: block; color: var(--faint); font: 650 11px/1.4 var(--mono); }
+    .ko-service-step strong { display: block; margin-top: 4px; font-size: 13px; }
     .ko-service-step p { margin-top: 4px; }
     .ko-support-band { display: grid; grid-template-columns: minmax(190px, .75fr) minmax(0, 1.65fr) auto; gap: 18px; align-items: center; padding: 18px; border: 1px solid var(--line); border-left: 3px solid var(--teal); border-radius: var(--radius-card); background: var(--surface); box-shadow: 0 10px 30px rgba(28, 35, 45, 0.06); }
-    .ko-support-copy h3 { margin: 0; font-size: 15px; }
-    .ko-support-copy p { margin: 5px 0 0; color: var(--muted); font-size: 9px; line-height: 1.65; }
+    .ko-support-copy h3 { margin: 0; font-size: 16px; }
+    .ko-support-copy p { margin: 5px 0 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
     .ko-support-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .ko-support-option { min-width: 0; padding: 2px 14px; border-left: 1px solid var(--line); }
-    .ko-support-option span { display: block; color: var(--teal); font: 700 11px/1.4 var(--mono); }
-    .ko-support-option strong { display: block; margin-top: 3px; font-size: 10px; line-height: 1.45; }
+    .ko-support-option span { display: block; color: var(--teal); font: 700 13px/1.4 var(--mono); }
+    .ko-support-option strong { display: block; margin-top: 3px; font-size: 12px; line-height: 1.45; }
     .ko-partner { display: flex; align-items: center; gap: 12px; padding: 13px 14px; border: 1px solid var(--line); border-left: 3px solid var(--blue); border-radius: var(--radius); background: var(--blue-soft); }
     .ko-partner > div { flex: 1; }
-    .ko-partner strong { display: block; font-size: 11px; }
-    .ko-partner p { margin: 3px 0 0; color: var(--muted); font-size: 9px; }
+    .ko-partner strong { display: block; font-size: 13px; }
+    .ko-partner p { margin: 3px 0 0; color: var(--muted); font-size: 11px; }
     .ko-skill-toolbar { display: grid; grid-template-columns: minmax(240px, 1fr) auto; gap: 10px; align-items: center; padding: 12px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
     .ko-skill-search { position: relative; }
     .ko-skill-search svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--faint); pointer-events: none; }
-    .ko-skill-search input { width: 100%; min-height: 36px; padding: 0 10px 0 32px; border: 1px solid var(--line); border-radius: var(--radius); color: var(--text); background: var(--surface-2); outline: none; }
+    .ko-skill-search input { width: 100%; min-height: 38px; padding: 0 10px 0 32px; border: 1px solid var(--line); border-radius: var(--radius); color: var(--text); background: var(--surface-2); outline: none; font-size: 13px; }
     .ko-skill-search input:focus { border-color: var(--teal); box-shadow: 0 0 0 2px color-mix(in srgb, var(--teal) 15%, transparent); }
     .ko-skill-filters { display: inline-flex; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-    .ko-skill-filter { min-height: 34px; padding: 0 10px; border: 0; border-right: 1px solid var(--line); color: var(--muted); background: var(--surface); font-size: 9px; cursor: pointer; }
+    .ko-skill-filter { min-height: 36px; padding: 0 12px; border: 0; border-right: 1px solid var(--line); color: var(--muted); background: var(--surface); font-size: 12px; cursor: pointer; }
     .ko-skill-filter:last-child { border-right: 0; }
     .ko-skill-filter.is-active { color: #fff; background: var(--teal); }
-    .ko-skill-summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 10px 0 8px; color: var(--muted); font-size: 9px; }
+    .ko-skill-summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 10px 0 8px; color: var(--muted); font-size: 12px; }
     .ko-skill-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
     .ko-skill-card[hidden] { display: none; }
-    .ko-skill-card h3 { margin: 8px 0 0; font-size: 12px; }
+    .ko-skill-card h3 { margin: 8px 0 0; font-size: 14px; }
     .ko-skill-card p { min-height: 50px; }
     .ko-skill-badges { display: flex; flex-wrap: wrap; gap: 5px; }
     .ko-skill-route { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-top: 11px; padding-top: 9px; border-top: 1px solid var(--line); }
-    .ko-skill-route span { color: var(--faint); font-size: 8px; }
-    .ko-skill-route strong { color: var(--text); font-size: 9px; text-align: right; }
+    .ko-skill-route span { color: var(--faint); font-size: 11px; }
+    .ko-skill-route strong { color: var(--text); font-size: 11px; text-align: right; }
     .ko-skill-group + .ko-skill-group { margin-top: 18px; }
     .ko-skill-group[hidden] { display: none; }
     .ko-skill-group-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
-    .ko-skill-group-head h3 { margin: 0; font-size: 12px; }
-    .ko-skill-group-head p { margin: 0; color: var(--muted); font-size: 9px; }
-    .ko-skill-empty { padding: 28px 14px; border: 1px dashed var(--line); border-radius: var(--radius); color: var(--muted); text-align: center; font-size: 10px; }
+    .ko-skill-group-head h3 { margin: 0; font-size: 14px; }
+    .ko-skill-group-head p { margin: 0; color: var(--muted); font-size: 11px; }
+    .ko-skill-empty { padding: 28px 14px; border: 1px dashed var(--line); border-radius: var(--radius); color: var(--muted); text-align: center; font-size: 12px; }
     .ko-skill-empty[hidden] { display: none; }
-    .ko-label { display: block; margin: 0 0 6px; color: var(--muted); font-size: 9px; font-weight: 650; }
-    .ko-select, .ko-textarea, .ko-input { width: 100%; border: 1px solid var(--line); border-radius: var(--radius); color: var(--text); background: var(--surface); outline: none; }
-    .ko-select, .ko-input { min-height: 36px; padding: 0 10px; }
+    .ko-label { display: block; margin: 0 0 6px; color: var(--muted); font-size: 11px; font-weight: 650; }
+    .ko-select, .ko-textarea, .ko-input { width: 100%; border: 1px solid var(--line); border-radius: var(--radius); color: var(--text); background: var(--surface); outline: none; font-size: 13px; }
+    .ko-select, .ko-input { min-height: 38px; padding: 0 10px; }
     .ko-textarea { min-height: 150px; padding: 10px; resize: vertical; line-height: 1.6; }
     .ko-select:focus, .ko-textarea:focus, .ko-input:focus { border-color: var(--teal); box-shadow: 0 0 0 2px color-mix(in srgb, var(--teal) 15%, transparent); }
     .ko-btn:disabled { opacity: 0.45; cursor: not-allowed; filter: none; }
     .ko-editor { display: grid; grid-template-columns: minmax(0, 1fr) 270px; min-height: 620px; border: 1px solid #242b31; border-radius: var(--radius-card); overflow: hidden; background: #0b0e11; color: #e9edf2; }
     .ko-editor-main { display: grid; grid-template-rows: auto minmax(330px, 1fr) 166px; min-width: 0; }
     .ko-editor-toolbar { display: flex; align-items: center; gap: 7px; min-height: 46px; padding: 0 12px; border-bottom: 1px solid #242b31; background: #11151a; }
-    .ko-editor-toolbar strong { font-size: 11px; }
+    .ko-editor-toolbar strong { font-size: 12px; }
     .ko-editor-toolbar .ko-btn { border-color: #303842; color: #c7cdd5; background: #171c22; }
     .ko-editor-toolbar .ko-btn-primary { color: #fff; background: #087f72; border-color: #087f72; }
     .ko-stage { display: grid; place-items: center; min-width: 0; padding: 14px; overflow: hidden; background: #090c0f; }
     .ko-stage img { width: min(100%, 880px); max-height: 100%; object-fit: contain; border: 1px solid #252c34; box-shadow: 0 16px 50px rgba(0,0,0,0.35); }
     .ko-timeline { padding: 10px 12px; border-top: 1px solid #242b31; background: #101419; overflow: hidden; }
-    .ko-time-head { display: flex; align-items: center; justify-content: space-between; color: #99a4af; font-size: 9px; }
+    .ko-time-head { display: flex; align-items: center; justify-content: space-between; color: #99a4af; font-size: 11px; }
     .ko-track { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 8px; align-items: center; margin-top: 8px; }
-    .ko-track-label { color: #7f8a95; font-size: 8px; }
+    .ko-track-label { color: #7f8a95; font-size: 11px; }
     .ko-track-line { position: relative; height: 28px; border: 1px solid #27303a; background: #0c1014; }
-    .ko-clip { position: absolute; top: 3px; bottom: 3px; display: flex; align-items: center; padding: 0 8px; border-radius: 3px; overflow: hidden; white-space: nowrap; font-size: 8px; }
+    .ko-clip { position: absolute; top: 3px; bottom: 3px; display: flex; align-items: center; padding: 0 8px; border-radius: 3px; overflow: hidden; white-space: nowrap; font-size: 11px; }
     .ko-clip-a { left: 2%; width: 44%; color: #b9fff4; border: 1px solid #168c7d; background: #153d38; }
     .ko-clip-b { left: 33%; width: 62%; color: #d9e5ff; border: 1px solid #456baf; background: #1f3762; }
     .ko-clip-c { left: 12%; width: 76%; color: #ffe8a8; border: 1px solid #9a6c1a; background: #3b2d13; }
     .ko-playhead { position: absolute; top: -5px; bottom: -5px; left: 38%; width: 1px; background: #ff6b75; }
     .ko-editor-side { padding: 13px; border-left: 1px solid #242b31; background: #12161b; }
-    .ko-editor-side h3 { margin: 0 0 12px; font-size: 11px; }
-    .ko-dark-label { display: block; margin-bottom: 5px; color: #8c97a3; font-size: 8px; }
-    .ko-dark-input { width: 100%; min-height: 34px; padding: 0 9px; border: 1px solid #303842; border-radius: 5px; color: #e9edf2; background: #0e1216; }
+    .ko-editor-side h3 { margin: 0 0 12px; font-size: 13px; }
+    .ko-dark-label { display: block; margin-bottom: 5px; color: #8c97a3; font-size: 11px; }
+    .ko-dark-input { width: 100%; min-height: 34px; padding: 0 9px; border: 1px solid #303842; border-radius: 5px; color: #e9edf2; background: #0e1216; font-size: 12px; }
     .ko-range-row { display: grid; grid-template-columns: 1fr 38px; gap: 8px; align-items: center; }
     .ko-range { width: 100%; accent-color: #35c7b4; }
-    .ko-range-value { color: #35c7b4; font: 650 9px/1 var(--mono); text-align: right; }
+    .ko-range-value { color: #35c7b4; font: 650 11px/1 var(--mono); text-align: right; }
     .ko-side-field + .ko-side-field { margin-top: 13px; }
-    .ko-side-note { margin: 12px 0 0; color: #798591; font-size: 8px; line-height: 1.55; }
-    .ko-toast { position: fixed; right: 18px; bottom: 18px; z-index: 50; max-width: min(340px, calc(100vw - 36px)); padding: 9px 12px; border: 1px solid var(--line); border-radius: var(--radius); color: var(--text); background: var(--surface); box-shadow: var(--shadow); font-size: 10px; opacity: 0; transform: translateY(8px); pointer-events: none; transition: .16s ease; }
+    .ko-side-note { margin: 12px 0 0; color: #798591; font-size: 11px; line-height: 1.55; }
+    .ko-toast { position: fixed; right: 18px; bottom: 18px; z-index: 50; max-width: min(340px, calc(100vw - 36px)); padding: 9px 12px; border: 1px solid var(--line); border-radius: var(--radius); color: var(--text); background: var(--surface); box-shadow: var(--shadow); font-size: 12px; opacity: 0; transform: translateY(8px); pointer-events: none; transition: .16s ease; }
     .ko-toast.is-visible { opacity: 1; transform: translateY(0); }
     .ko-modal[hidden] { display: none; }
     .ko-modal { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 18px; }
     .ko-modal-backdrop { position: absolute; inset: 0; background: rgba(12, 18, 22, 0.58); }
     .ko-modal-dialog { position: relative; width: min(620px, 100%); max-height: calc(100vh - 36px); overflow: auto; border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--surface); box-shadow: 0 24px 70px rgba(14, 24, 31, 0.24); }
     .ko-modal-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 16px 18px 12px; border-bottom: 1px solid var(--line); }
-    .ko-modal-head h2 { margin: 0; font-size: 16px; }
-    .ko-modal-head p { margin: 4px 0 0; color: var(--muted); font-size: 9px; }
+    .ko-modal-head h2 { margin: 0; font-size: 17px; }
+    .ko-modal-head p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
     .ko-modal-close { flex: 0 0 auto; }
     .ko-modal-body { padding: 16px 18px 18px; }
     .ko-modal-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .ko-modal-field.is-wide { grid-column: 1 / -1; }
-    .ko-modal-note { margin: 10px 0 0; color: var(--faint); font-size: 9px; }
+    .ko-modal-note { margin: 10px 0 0; color: var(--faint); font-size: 11px; }
     .ko-modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
     .ko-consult-result { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
     .ko-consult-result[hidden] { display: none; }
-    .ko-consult-result pre { margin: 0; padding: 11px; overflow: auto; border: 1px solid var(--line); border-radius: var(--radius); color: var(--text); background: var(--surface-2); font: 10px/1.7 var(--mono); white-space: pre-wrap; }
+    .ko-consult-result pre { margin: 0; padding: 11px; overflow: auto; border: 1px solid var(--line); border-radius: var(--radius); color: var(--text); background: var(--surface-2); font: 12px/1.7 var(--mono); white-space: pre-wrap; }
     .ko-consult-result .ko-modal-actions { margin-top: 10px; }
     body.ko-modal-open { overflow: hidden; }
+    .ko-fab {
+      position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%) translateY(8px);
+      display: flex; align-items: center; gap: 12px;
+      max-width: min(680px, calc(100vw - 24px));
+      padding: 10px 12px 10px 16px;
+      border: 1px solid var(--line); border-left: 3px solid var(--teal);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--surface) 96%, transparent);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(28, 35, 45, 0.14);
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 40;
+    }
+    .ko-fab.is-visible { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .ko-fab-text { flex: 1; min-width: 0; color: var(--text); font-size: 12px; line-height: 1.4; }
+    .ko-fab-text strong { font-size: 13px; }
+    .ko-fab-text span { color: var(--muted); margin-left: 6px; font-size: 11px; }
+    .ko-fab .ko-btn { padding: 0 14px; min-height: 32px; font-size: 12px; }
+    .ko-fab-close { width: 26px; height: 26px; min-height: 26px; padding: 0; border-radius: 50%; color: var(--faint); background: transparent; }
+    .ko-fab-close:hover { color: var(--text); border-color: var(--line); }
+    @media (max-width: 680px) {
+      .ko-fab { bottom: 10px; padding: 8px 10px 8px 14px; gap: 8px; }
+      .ko-fab-text { font-size: 11px; }
+      .ko-fab-text strong { font-size: 12px; }
+      .ko-fab-text span { display: none; }
+    }
     @media (max-width: 980px) {
       .ko-intro, .ko-service-band { grid-template-columns: 1fr; }
       .ko-support-band { grid-template-columns: 1fr; gap: 12px; }
@@ -329,7 +369,7 @@
             <article class="ko-card">
               <div class="ko-card-head"><span class="ko-card-icon"><svg class="kv-svg" viewBox="0 0 24 24" width="15" height="15"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="m8 9 4 3-4 3zM14 15h4"/></svg></span><div class="ko-card-title"><strong>Kanvis Studio</strong><span>Codex入口 · Obsidian集成内测 · 本地渲染 · 无限画布</span></div></div>
               <p>Skill可从Codex直接打开Kanvis Studio；Obsidian集成通过Kanvis Content OS管理项目并进入同一个工作台。视频在无限画布中预览、修改并在本机导出MP4；本页提供产品说明与使用入口。</p>
-              <div class="ko-card-footer"><span class="ko-chip ko-chip-live">免费开放</span><a class="ko-inline" href="https://github.com/Kanvis-chen/kanvis-video" target="_blank" rel="noopener">查看本地使用说明 →</a></div>
+              <div class="ko-card-footer"><span class="ko-chip ko-chip-live">免费开放</span><div style="display:flex; gap:10px; flex-wrap:wrap"><button class="ko-inline" type="button" data-open-tab="workbench">查看工作台说明 →</button><a class="ko-inline" href="https://github.com/Kanvis-chen/kanvis-video" target="_blank" rel="noopener">本地使用说明 ↗</a></div></div>
             </article>
           </div>
         </section>
@@ -405,12 +445,79 @@
       </section>
 
       <section class="ko-panel" data-panel="workbench" hidden>
-        <div class="ko-section-head"><div><h2>Kanvis Studio</h2><p>免费开放的Codex本地视频工作台：Skill生成项目后，在无限画布中预览、编辑并在本机渲染MP4</p></div><span class="ko-chip">本地渲染 · 免费开放</span></div>
+        <div class="ko-section-head"><div><h2>把一篇文章，重新导演成视频</h2><p>Kanvis Studio 是 Kanvis System 的内容视频流水线入口：从文章到分镜、从分镜到工作台、从工作台到可发布成片。</p></div><span class="ko-chip">本地渲染 · 免费开放</span></div>
         <div class="ko-facts" style="margin:0 0 12px"><div class="ko-fact"><strong>免费开放</strong><span>基础工作台与开源Skill免费使用</span></div><div class="ko-fact"><strong>本地优先</strong><span>素材、项目和隐私数据默认留在本机</span></div><div class="ko-fact"><strong>Codex内运行</strong><span>网页用于介绍，工作台由本地插件提供</span></div></div>
+        <div class="ko-how">
+          <div class="ko-how-card"><span class="ko-how-no">01</span><strong>提供文章</strong><p>公众号长文、课程稿或 Markdown 知识库内容。保留原文依据，区分原始事实与推导。</p></div>
+          <div class="ko-how-card"><span class="ko-how-no">02</span><strong>Agent 导演分镜</strong><p>Codex Skill 改写口播脚本，按比较、流程、数字、证据选择视觉结构，生成语义分镜。</p></div>
+          <div class="ko-how-card"><span class="ko-how-no">03</span><strong>Studio 本地编辑</strong><p>画布、时间轴、字幕、信息图、数字人、特效在同一工作台。可撤销重做，可替换供应商。</p></div>
+          <div class="ko-how-card"><span class="ko-how-no">04</span><strong>导出</strong><p>自动检查分辨率、FPS、音轨与授权状态，配合人工视觉审核后导出 MP4、字幕与项目协议。</p></div>
+        </div>
         <div class="ko-editor">
           <div class="ko-editor-main">
             <div class="ko-editor-toolbar"><strong>Kanvis Studio界面预览</strong><button class="ko-btn" type="button" disabled title="请在Codex内使用">播放预览</button><button class="ko-btn" type="button" disabled title="请在Codex内使用" aria-label="撤销"><svg class="kv-svg" viewBox="0 0 24 24" width="13" height="13"><path d="M9 7 4 12l5 5M4 12h10a6 6 0 0 1 6 6"/></svg></button><button class="ko-btn ko-btn-primary" type="button" disabled title="请在Codex内使用">导出视频</button></div>
-            <div class="ko-stage"><img src="../assets/kanvis-workbench.png" alt="Kanvis Studio 视频工作台画布"></div>
+            <div class="ko-stage">
+              <svg class="ko-workbench-svg" viewBox="0 0 880 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kanvis Studio 工作台示意：画布、时间轴、属性面板">
+                <rect x="0" y="0" width="880" height="420" fill="#0a0d10"/>
+                <rect x="0" y="0" width="880" height="36" fill="#11151a"/>
+                <text x="14" y="22" fill="#c7cdd5" font-family="SFMono-Regular,Consolas,monospace" font-size="11" font-weight="600">Kanvis Studio · 画布与时间轴</text>
+                <circle cx="828" cy="18" r="3" fill="#35c7b4"/>
+                <text x="838" y="22" fill="#35c7b4" font-family="SFMono-Regular,Consolas,monospace" font-size="10">本机渲染</text>
+                <line x1="0" y1="36" x2="880" y2="36" stroke="#242b31" stroke-width="1"/>
+
+                <rect x="14" y="50" width="560" height="180" fill="#090c0f" stroke="#252c34"/>
+                <text x="22" y="68" fill="#99a4af" font-family="SFMono-Regular,Consolas,monospace" font-size="10">CANVAS · 主画面</text>
+                <rect x="34" y="80" width="240" height="135" fill="#153d38" stroke="#168c7d"/>
+                <text x="44" y="100" fill="#b9fff4" font-family="SFMono-Regular,Consolas,monospace" font-size="10">观点卡 · 主标题</text>
+                <rect x="44" y="110" width="200" height="6" fill="#35c7b4" opacity="0.6"/>
+                <rect x="44" y="122" width="160" height="4" fill="#35c7b4" opacity="0.4"/>
+                <rect x="44" y="132" width="180" height="4" fill="#35c7b4" opacity="0.4"/>
+                <rect x="290" y="80" width="120" height="135" fill="#1f3762" stroke="#456baf"/>
+                <text x="300" y="100" fill="#d9e5ff" font-family="SFMono-Regular,Consolas,monospace" font-size="10">数字人 PIP</text>
+                <circle cx="350" cy="148" r="32" fill="#456baf" opacity="0.7"/>
+                <rect x="420" y="80" width="146" height="135" fill="#3b2d13" stroke="#9a6c1a"/>
+                <text x="430" y="100" fill="#ffe8a8" font-family="SFMono-Regular,Consolas,monospace" font-size="10">数据证据</text>
+                <rect x="430" y="112" width="126" height="10" fill="#f0bd55" opacity="0.6"/>
+                <rect x="430" y="128" width="100" height="6" fill="#f0bd55" opacity="0.4"/>
+                <rect x="430" y="140" width="80" height="6" fill="#f0bd55" opacity="0.4"/>
+                <rect x="430" y="152" width="110" height="6" fill="#f0bd55" opacity="0.4"/>
+
+                <rect x="586" y="50" width="280" height="180" fill="#12161b" stroke="#242b31"/>
+                <text x="596" y="68" fill="#c7cdd5" font-family="SFMono-Regular,Consolas,monospace" font-size="10" font-weight="600">片段属性</text>
+                <text x="596" y="86" fill="#8c97a3" font-family="SFMono-Regular,Consolas,monospace" font-size="9">字幕文案</text>
+                <rect x="596" y="92" width="260" height="22" fill="#0e1216" stroke="#303842" rx="3"/>
+                <text x="603" y="107" fill="#e9edf2" font-family="SFMono-Regular,Consolas,monospace" font-size="10">把一篇文章，变成可编辑视频</text>
+                <text x="596" y="130" fill="#8c97a3" font-family="SFMono-Regular,Consolas,monospace" font-size="9">透明度</text>
+                <rect x="596" y="136" width="220" height="4" fill="#303842" rx="2"/>
+                <rect x="596" y="136" width="200" height="4" fill="#35c7b4" rx="2"/>
+                <text x="824" y="142" fill="#35c7b4" font-family="SFMono-Regular,Consolas,monospace" font-size="9">92%</text>
+                <text x="596" y="168" fill="#8c97a3" font-family="SFMono-Regular,Consolas,monospace" font-size="9">特效预设</text>
+                <rect x="596" y="174" width="260" height="22" fill="#0e1216" stroke="#303842" rx="3"/>
+                <text x="603" y="189" fill="#e9edf2" font-family="SFMono-Regular,Consolas,monospace" font-size="10">观点强调 ▾</text>
+                <rect x="596" y="208" width="120" height="22" fill="#087f72" rx="3"/>
+                <text x="603" y="223" fill="#fff" font-family="SFMono-Regular,Consolas,monospace" font-size="10" font-weight="600">保存片段样式</text>
+
+                <line x1="0" y1="244" x2="880" y2="244" stroke="#242b31"/>
+                <text x="14" y="262" fill="#99a4af" font-family="SFMono-Regular,Consolas,monospace" font-size="10">TIMELINE · 3 轨道 · 00:00 / 00:12</text>
+                <line x1="80" y1="280" x2="866" y2="280" stroke="#ff6b75" stroke-width="1" opacity="0.8"/>
+                <polygon points="80,276 76,284 84,284" fill="#ff6b75"/>
+
+                <text x="20" y="306" fill="#7f8a95" font-family="SFMono-Regular,Consolas,monospace" font-size="9">特效</text>
+                <rect x="80" y="296" width="380" height="20" fill="#153d38" stroke="#168c7d" rx="2"/>
+                <text x="88" y="310" fill="#b9fff4" font-family="SFMono-Regular,Consolas,monospace" font-size="9">主标题与观点卡</text>
+
+                <text x="20" y="338" fill="#7f8a95" font-family="SFMono-Regular,Consolas,monospace" font-size="9">视频</text>
+                <rect x="80" y="328" width="540" height="20" fill="#1f3762" stroke="#456baf" rx="2"/>
+                <text x="88" y="342" fill="#d9e5ff" font-family="SFMono-Regular,Consolas,monospace" font-size="9">数字人 / 真人 PIP</text>
+
+                <text x="20" y="370" fill="#7f8a95" font-family="SFMono-Regular,Consolas,monospace" font-size="9">字幕</text>
+                <rect x="80" y="360" width="660" height="20" fill="#3b2d13" stroke="#9a6c1a" rx="2"/>
+                <text x="88" y="374" fill="#ffe8a8" font-family="SFMono-Regular,Consolas,monospace" font-size="9">重点字幕与章节提示</text>
+
+                <rect x="80" y="290" width="786" height="92" fill="none" stroke="#27303a" stroke-width="1" rx="2"/>
+                <text x="14" y="402" fill="#747e89" font-family="SFMono-Regular,Consolas,monospace" font-size="9">本页为界面示意；实际编辑、项目保存和导出在 Codex 内的 Kanvis Studio 完成。</text>
+              </svg>
+            </div>
             <div class="ko-timeline"><div class="ko-time-head"><span>画面轨道 · 3个片段</span><span>00:00 / 00:12</span></div><div class="ko-track"><span class="ko-track-label">特效</span><div class="ko-track-line"><span class="ko-clip ko-clip-a">主标题与观点卡</span><span class="ko-playhead"></span></div></div><div class="ko-track"><span class="ko-track-label">视频</span><div class="ko-track-line"><span class="ko-clip ko-clip-b">数字人 / 真人 PIP</span></div></div><div class="ko-track"><span class="ko-track-label">字幕</span><div class="ko-track-line"><span class="ko-clip ko-clip-c">重点字幕与章节提示</span></div></div></div>
           </div>
           <aside class="ko-editor-side">
@@ -423,6 +530,29 @@
             <p class="ko-side-note">本页为界面预览；实际编辑、项目保存和导出在Codex内的Kanvis Studio完成。AI生成等联网能力会在执行前确认费用或由用户自备API。</p>
           </aside>
         </div>
+
+        <section class="ko-section ko-start-band" aria-labelledby="start-title">
+          <div class="ko-start-copy">
+            <h3 id="start-title">如何在 Codex 内开始</h3>
+            <p>把 Kanvis Video 仓库放入 Codex skills 目录后，启动新任务并显式调用。默认禁用隐式触发，文章处理不会自动进入付费数字人生成。</p>
+            <code>Use $kanvis-article-to-video to turn this article into a visually directed video project, then open it in Kanvis Studio.</code>
+          </div>
+          <div class="ko-start-actions">
+            <a class="ko-btn ko-btn-primary" href="https://github.com/Kanvis-chen/kanvis-video" target="_blank" rel="noopener">查看 GitHub 源码 ↗</a>
+            <a class="ko-btn" href="https://github.com/Kanvis-chen/kanvis-video#安装" target="_blank" rel="noopener">安装与运行说明</a>
+            <a class="ko-btn ko-btn-quiet" href="https://my.feishu.cn/share/base/shrcnLa2i2JpSeCvYqpPoDDJw7e" target="_blank" rel="noopener">加入内测群 ↗</a>
+          </div>
+        </section>
+
+        <section class="ko-section ko-support-band" aria-labelledby="support-title">
+          <div class="ko-support-copy"><h3 id="support-title">需要进一步支持？</h3><p>看完工作台说明仍想加速落地，从快速诊断、系统学习到28天陪跑，按当前问题选择合适的支持。</p></div>
+          <div class="ko-support-options" aria-label="Kanvis 付费支持">
+            <div class="ko-support-option"><span>¥299</span><strong>经营问题快诊</strong></div>
+            <div class="ko-support-option"><span>¥980</span><strong>AI 内容系统实操课</strong></div>
+            <div class="ko-support-option"><span>¥6,980</span><strong>28天 AI 商业落地陪跑</strong></div>
+          </div>
+          <a class="ko-btn ko-btn-primary" href="../#services">查看课程与服务 →</a>
+        </section>
       </section>
     </main>
     <div class="ko-modal" data-consult-modal hidden>
@@ -446,10 +576,20 @@
       </section>
     </div>
     <div class="ko-toast" role="status" aria-live="polite"></div>
+    <div class="ko-fab" role="region" aria-label="课程与服务快速入口" data-fab>
+      <div class="ko-fab-text"><strong>需要进一步支持？</strong><span>¥299 快诊 · ¥980 实操课 · ¥6,980 陪跑</span></div>
+      <a class="ko-btn ko-btn-primary" href="../#services">查看课程与服务 →</a>
+      <button class="ko-icon-btn ko-fab-close" type="button" data-fab-close aria-label="隐藏">×</button>
+    </div>
   </div>
 
   <script>
     (() => {
+      const THEME_KEY = 'kanvis-open-theme';
+      try {
+        const saved = localStorage.getItem(THEME_KEY);
+        if (saved === 'dark') document.body.classList.add('is-dark');
+      } catch (_) {}
       const app = document.querySelector('[data-kanvis-open]');
       if (!app || app.dataset.mounted === 'true') return;
       app.dataset.mounted = 'true';
@@ -557,7 +697,9 @@
           const action = button.dataset.action;
           if (action === 'theme') {
             document.body.classList.toggle('is-dark');
-            showToast(document.body.classList.contains('is-dark') ? '已切换深色主题' : '已切换浅色主题');
+            const isDark = document.body.classList.contains('is-dark');
+            try { localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light'); } catch (_) {}
+            showToast(isDark ? '已切换深色主题' : '已切换浅色主题');
             return;
           }
           if (consultActions.has(action)) {
@@ -610,6 +752,28 @@
       const scale = app.querySelector('#scale');
       opacity.addEventListener('input', () => { app.querySelector('[data-opacity]').textContent = `${opacity.value}%`; });
       scale.addEventListener('input', () => { app.querySelector('[data-scale]').textContent = `${scale.value}%`; });
+
+      const fab = app.querySelector('[data-fab]');
+      const fabClose = app.querySelector('[data-fab-close]');
+      let fabDismissed = false;
+      const FAB_KEY = 'kanvis-fab-dismissed';
+      try { if (localStorage.getItem(FAB_KEY) === '1') { fabDismissed = true; fab.hidden = true; } } catch (_) {}
+      const updateFab = () => {
+        if (fabDismissed) return;
+        const scrolled = window.scrollY;
+        const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 500;
+        const shouldShow = scrolled > 300 && !nearBottom;
+        fab.classList.toggle('is-visible', shouldShow);
+      };
+      window.addEventListener('scroll', updateFab, { passive: true });
+      window.addEventListener('resize', updateFab);
+      updateFab();
+      if (fabClose) fabClose.addEventListener('click', () => {
+        fabDismissed = true;
+        fab.classList.remove('is-visible');
+        try { localStorage.setItem(FAB_KEY, '1'); } catch (_) {}
+        setTimeout(() => { fab.hidden = true; }, 220);
+      });
     })();
   </script>
 </body>
