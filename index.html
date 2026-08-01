@@ -21,6 +21,372 @@
   <link rel="icon" type="image/png" href="assets/kanvis-portrait.png">
   <link rel="stylesheet" href="assets/styles.css">
   <script defer src="assets/app.js"></script>
+  <style>
+    /* FAQ list */
+    .faq { padding: 104px 0; background: var(--soft); }
+    .faq-list {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 820px;
+    }
+    .faq-item {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: 4px;
+      padding: 0;
+      overflow: hidden;
+    }
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 22px;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      color: var(--teal);
+      font-weight: 800;
+      font-size: 20px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .faq-item[open] summary::after { content: '−'; }
+    .faq-item .faq-answer {
+      padding: 0 22px 20px;
+      color: #47504d;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .faq-item .faq-answer p { margin: 0; }
+
+    .statement-direction {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0a0a0a;
+      margin: 36px 0 14px;
+      letter-spacing: -0.01em;
+    }
+    .statement-direction-copy {
+      color: #4a4a4a;
+      line-height: 1.7;
+      font-size: 16px;
+      margin: 0 0 14px;
+    }
+
+    /* Ecosystem section */
+    .ecosystem {
+      padding: 104px 0;
+      background: linear-gradient(180deg, #f3f6f4 0%, #ffffff 100%);
+      border-bottom: 1px solid var(--line);
+    }
+    .ecosystem-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding: 6px 14px;
+      border: 1px solid var(--teal);
+      border-radius: 999px;
+      color: var(--teal-dark);
+      background: #e9f7f3;
+      font-size: 12px;
+      font-weight: 750;
+    }
+    .ecosystem-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.85); }
+    }
+    .ecosystem-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 60px;
+      align-items: center;
+      margin-top: 32px;
+    }
+    .ecosystem-video {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #001A33;
+      box-shadow: 0 24px 48px rgba(0, 26, 51, 0.25);
+    }
+    .ecosystem-video video {
+      width: 100%;
+      display: block;
+      aspect-ratio: 9/16;
+      object-fit: contain;
+      background: #001A33;
+    }
+    .ecosystem-video-label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background: rgba(0, 26, 51, 0.85);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      backdrop-filter: blur(8px);
+    }
+    .ecosystem-video-label .dot-live {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #00C8FF;
+      box-shadow: 0 0 8px #00C8FF;
+    }
+    .ecosystem-copy h3 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.25;
+      font-family: "Arial Black", Inter, "Microsoft YaHei", sans-serif;
+    }
+    .ecosystem-copy .ecosystem-author {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .ecosystem-copy .ecosystem-author strong {
+      color: var(--ink);
+    }
+    .ecosystem-copy p {
+      margin: 0 0 16px;
+      color: #3f4745;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    .ecosystem-features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 24px 0;
+      padding: 0;
+      list-style: none;
+    }
+    .ecosystem-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 14px;
+      color: #44504b;
+    }
+    .ecosystem-features li::before {
+      content: "✓";
+      flex: 0 0 auto;
+      color: var(--teal);
+      font-weight: 800;
+    }
+    .ecosystem-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .ecosystem-note {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    @media (max-width: 980px) {
+      .ecosystem-hero { grid-template-columns: 1fr; gap: 40px; }
+      .ecosystem-video { max-width: 420px; margin: 0 auto; }
+    }
+    @media (max-width: 760px) {
+      .ecosystem { padding: 72px 0; }
+      .ecosystem-copy h3 { font-size: 26px; }
+      .ecosystem-features { grid-template-columns: 1fr; }
+    }
+
+    /* Nav CTA button */
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border-radius: 4px;
+      background: var(--teal);
+      color: #fff !important;
+      font-size: 13px;
+      font-weight: 750;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background .15s ease;
+    }
+    .header-cta:hover { background: var(--teal-dark); color: #fff !important; }
+
+    /* Hero refund note */
+    .hero-refund {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Social proof section */
+    .social-proof {
+      padding: 80px 0;
+      background: var(--soft, #f3f6f4);
+      border-bottom: 1px solid var(--line);
+    }
+    .proof-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: end;
+      max-width: 980px;
+    }
+    .proof-header h2 { margin: 0; }
+    .proof-header > p {
+      margin: 0;
+      color: #5a6360;
+      font-size: 16px;
+      line-height: 1.65;
+      padding-bottom: 4px;
+    }
+    .proof-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 48px 0 36px;
+      text-align: center;
+    }
+    .proof-stat-num {
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--teal);
+      font-family: "Arial Black", Inter, "Microsoft YaHei", sans-serif;
+      line-height: 1;
+    }
+    .proof-stat-label {
+      margin-top: 6px;
+      font-size: 13px;
+      color: #4f5a55;
+    }
+    .proof-cta {
+      text-align: center;
+      padding: 32px 28px;
+      border: 1px solid var(--teal);
+      border-radius: 8px;
+      background: linear-gradient(135deg, #e9f7f3 0%, #f3f6f4 100%);
+    }
+    .proof-cta p {
+      margin: 0 0 16px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .proof-benefits {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+    .proof-benefits li {
+      padding: 6px 0 6px 28px;
+      position: relative;
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    .proof-benefits li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      color: var(--teal);
+      font-weight: 800;
+      font-size: 14px;
+    }
+    .proof-cta .refund-mini {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* Final CTA section */
+    .final-cta {
+      padding: 104px 0;
+      background: #001A33;
+      color: #fff;
+      text-align: center;
+    }
+    .final-cta h2 {
+      color: #fff;
+      font-size: 44px;
+      margin: 0 0 16px;
+      font-family: "Arial Black", Inter, "Microsoft YaHei", sans-serif;
+    }
+    .final-cta p {
+      color: rgba(255,255,255,.7);
+      font-size: 18px;
+      margin: 0 0 36px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+    .final-cta .button-primary {
+      background: var(--teal);
+      padding: 16px 40px;
+      font-size: 16px;
+    }
+    .final-cta .button-primary:hover { background: var(--teal-dark); }
+    .final-cta .refund-text {
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(255,255,255,.5);
+    }
+    .final-cta .light-touch {
+      margin-top: 28px;
+      font-size: 14px;
+      color: rgba(255,255,255,.45);
+    }
+    .final-cta .light-touch a {
+      color: rgba(255,255,255,.7);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .final-cta .light-touch a:hover { color: #fff; }
+
+    @media (max-width: 760px) {
+      .proof-header { grid-template-columns: 1fr; gap: 16px; }
+      .proof-stats { grid-template-columns: 1fr; gap: 24px; }
+      .proof-stat-num { font-size: 36px; }
+      .final-cta h2 { font-size: 30px; }
+      .final-cta { padding: 72px 0; }
+      .proof-cta { padding: 28px 20px; }
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要内容</a>
@@ -33,15 +399,20 @@
       </a>
 
       <nav class="desktop-nav" aria-label="主要导航">
-        <a href="#about">关于我</a>
         <a href="#projects">正在构建</a>
+        <a href="#ecosystem">开放生态</a>
+        <a href="#about">关于康少</a>
         <a href="#course">课程</a>
         <a href="#services">服务与合作</a>
         <a href="#resources">资源</a>
       </nav>
 
       <div class="header-actions">
-        <a class="text-link header-github" href="https://github.com/Kanvis-chen" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+        <a class="header-gh-icon" href="https://github.com/Kanvis-chen" target="_blank" rel="noopener" aria-label="Kanvis GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.75.41-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.71 5.41-5.29 5.69.42.36.79 1.08.79 2.18v3.23c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <span class="header-divider" aria-hidden="true"></span>
+        <a class="header-cta" href="#join">加入 Kanvis 创作者社区 ¥199</a>
         <button class="menu-button" type="button" aria-label="打开导航" aria-expanded="false" data-menu-button>
           <span></span><span></span>
         </button>
@@ -49,12 +420,14 @@
     </div>
 
     <nav class="mobile-nav" aria-label="移动端导航" data-mobile-nav hidden>
-      <a href="#about">关于我</a>
       <a href="#projects">正在构建</a>
+      <a href="#ecosystem">开放生态</a>
+      <a href="#about">关于康少</a>
       <a href="#course">课程</a>
       <a href="#services">服务与合作</a>
       <a href="#resources">资源</a>
       <a href="https://github.com/Kanvis-chen" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="header-cta" href="#join" style="margin-top:8px;justify-content:center;">加入 Kanvis 创作者社区 ¥199 ↗</a>
     </nav>
   </header>
 
@@ -73,32 +446,101 @@
       </div>
       <div class="hero-wash" aria-hidden="true"></div>
       <div class="hero-content page-shell">
-        <p class="eyebrow">AI SYSTEM BUILDER · PUBLIC EXPERIMENT</p>
+        <p class="eyebrow">AI CREATOR OS · PUBLIC BUILD</p>
         <h1 id="hero-title">康少 <span>Kanvis</span></h1>
-        <p class="hero-lead">我正在公开构建 Kanvis，一套 AI 协作与经营系统：用 Agent、Skill 和内容系统，从真实问题出发，搭建可执行、可复盘的工作流。</p>
+        <p class="hero-lead">我正在公开构建 Kanvis——一套 AI 协作与经营系统：用 Agent、Skill 和内容系统，把真实问题跑通成内容与产品。</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="open/?tab=skill">浏览开源 Skill</a>
-          <a class="button button-secondary" href="open/?tab=workbench">了解本地工作台</a>
-          <a class="button button-beta" href="https://my.feishu.cn/share/base/shrcnLa2i2JpSeCvYqpPoDDJw7e" target="_blank" rel="noopener">申请加入内测群 ↗</a>
+          <a class="button button-primary" href="#join">加入 Kanvis 创作者社区 ¥199</a>
+          <a class="button button-secondary" href="https://my.feishu.cn/share/base/shrcnLa2i2JpSeCvYqpPoDDJw7e" target="_blank" rel="noopener">参与产品内测 / 填写需求 →</a>
         </div>
+        <p class="hero-refund">康少亲自答疑 · 50+ 节实战内容与 20 个 SOP · 17+ 精选 Skill · 社群共学</p>
         <div class="build-status" aria-label="当前项目状态">
-          <div><strong>01</strong><span>Kanvis Article to Video<br>已开源</span></div>
-          <div><strong>02</strong><span>开放 Skill 生态<br>持续收录</span></div>
-          <div><strong>03</strong><span>Kanvis Studio<br>Codex 可用 · Obsidian 内测</span></div>
+          <div><strong>01</strong><span>Kanvis Studio<br>Codex 可用 · Obsidian 内测中</span></div>
+          <div><strong>02</strong><span>Kanvis Article to Video<br>MIT 开源 · v0.3.0</span></div>
+          <div><strong>03</strong><span>开放 Skill 生态<br>持续收录</span></div>
         </div>
       </div>
     </section>
 
-    <section class="statement" id="about">
-      <div class="page-shell statement-grid">
-        <div>
-          <p class="section-kicker">ABOUT / 关于我</p>
-          <h2>先找到值得解决的问题，<br>再打造自己的经营系统。</h2>
+    <section class="ecosystem" id="ecosystem" aria-labelledby="ecosystem-title">
+      <div class="page-shell">
+        <div class="ecosystem-badge">
+          <span>首个社区 Skill 收录到开放生态</span>
         </div>
-        <div class="statement-copy">
-          <p>AI 工具越来越多，但工具本身不是生意。真正重要的是找到一个值得解决、有人愿意付费的问题，再把专业能力连接成内容、产品、成交与交付。</p>
-          <p>Kanvis 是我给这套 AI 协作系统起的名字，灵感来自 Jarvis。康少是我本人；我会把 Skill、工作流和工具放进真实的内容与经营任务里，公开构建过程，也记录那些没有跑通的版本。</p>
-          <p class="quote-line">经验 → 方法论 → 内容与信任 → 产品与成交 → 稳定交付 → 数据复盘</p>
+        <div class="section-heading" style="margin-bottom: 0;">
+          <div>
+            <p class="section-kicker">OPEN SKILL ECOSYSTEM</p>
+            <h2 id="ecosystem-title">开放生态收录的第一个社区 Skill</h2>
+          </div>
+          <p>开源创作者 Eric 做了一个很棒的视频 Skill，我收录到 Kanvis 开放生态里展示。如果你也在做 AI 工具，欢迎提交。</p>
+        </div>
+
+        <div class="ecosystem-hero">
+          <div class="ecosystem-video">
+            <div class="ecosystem-video-label">
+              <span class="dot-live"></span>
+              <span>MIORA CARDFORGE · 演示视频</span>
+            </div>
+            <video controls preload="metadata" poster="assets/kanvis-workbench.png">
+              <source src="assets/miora-cardforge-demo.mp4" type="video/mp4">
+              您的浏览器不支持视频播放。
+            </video>
+          </div>
+          <div class="ecosystem-copy">
+            <h3>Miora CardForge</h3>
+            <p class="ecosystem-author">作者：<strong>Eric</strong> · 开源创作者</p>
+            <p>把文章、笔记、截图、课程资料自动铸成带编号的 Miora 风格中文知识卡片，再导出可编辑的 Remotion 视频。支持横版/竖版，小红书/抖音/通用三种平台风格。</p>
+            <ul class="ecosystem-features">
+              <li>文章/笔记/截图一键生成知识卡片视频</li>
+              <li>小红书/抖音/通用三平台风格</li>
+              <li>透明 Miora 机器人 + 内容感知姿势</li>
+              <li>卡片先预览审核，再合成视频</li>
+              <li>输出 Remotion 可编辑项目</li>
+              <li>开源免费，MIT 协议</li>
+            </ul>
+            <div class="ecosystem-actions">
+              <a class="button button-primary" href="open/?tab=skill">进入 Skill 生态 →</a>
+              <a class="button button-secondary" href="#join">了解创作者社区 →</a>
+            </div>
+            <p class="ecosystem-note">如果你也做了好用的 AI 工具或 Skill，欢迎提交到开放生态。好的 Skill 我帮你收录、帮你展示。独立创作者一起做大。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="social-proof" id="proof">
+      <div class="page-shell">
+        <div class="proof-header">
+          <div>
+            <p class="section-kicker">JOIN THE COMMUNITY</p>
+            <h2>加入 Kanvis 创作者社区</h2>
+          </div>
+          <p>有问题直接问，有想法直接聊。一群在用 AI 做事的人，互相帮助。</p>
+        </div>
+        <div class="proof-stats">
+          <div>
+            <div class="proof-stat-num">17+</div>
+            <div class="proof-stat-label">精选 Skill 可用</div>
+          </div>
+          <div>
+            <div class="proof-stat-num">50+</div>
+            <div class="proof-stat-label">节实战内容</div>
+          </div>
+          <div>
+            <div class="proof-stat-num">20+</div>
+            <div class="proof-stat-label">可复用 SOP</div>
+          </div>
+        </div>
+        <div class="proof-cta">
+          <p>¥199 你将获得：</p>
+          <ul class="proof-benefits">
+            <li>康少亲自答疑，有问题直接问</li>
+            <li>50+ 节实战内容与 20 个 SOP（持续更新）</li>
+            <li>17+ 精选 Skill 直接用</li>
+            <li>一群在用 AI 做事的人，互相交流</li>
+            <li>后续升级 ¥980 系统课可抵扣</li>
+          </ul>
+          <a class="button button-primary" href="#join">加入 Kanvis 创作者社区 ¥199</a>
         </div>
       </div>
     </section>
@@ -108,7 +550,7 @@
         <div class="section-heading">
           <div>
             <p class="section-kicker">BUILDING IN PUBLIC</p>
-            <h2>现在正在构建</h2>
+            <h2>我正在构建的产品</h2>
           </div>
           <p>先做真正能被使用的最小产品，再由真实反馈决定下一步。</p>
         </div>
@@ -117,41 +559,60 @@
           <article class="project-row">
             <div class="project-index">01</div>
             <div class="project-copy">
-              <p class="project-meta">OPEN SOURCE · MIT</p>
-              <h3>Kanvis Article to Video</h3>
-              <p>把文章、课程稿或口播内容整理成结构化视频任务，连接脚本、数字人、字幕、镜头与可编辑项目。</p>
+              <p class="project-meta">FREE EDITABLE WORKBENCH</p>
+              <h3>Kanvis Studio</h3>
+              <p>面向口播、数字人与课程视频的本地可编辑工作台。Skill 可从 Codex 直接打开；Obsidian 集成正在内测，用于管理项目并进入同一个 Kanvis Studio。编辑与渲染默认在本机完成。</p>
             </div>
             <div class="project-actions">
-              <span class="status status-live">已开源</span>
-              <a class="arrow-link" href="https://github.com/Kanvis-chen/kanvis-video" target="_blank" rel="noopener">查看源码与使用说明 <span aria-hidden="true">↗</span></a>
+              <span class="status">Codex 可用 · Obsidian 内测中</span>
+              <a class="arrow-link" href="open/?tab=workbench">了解 Kanvis Studio <span aria-hidden="true">→</span></a>
             </div>
           </article>
 
           <article class="project-row">
             <div class="project-index">02</div>
             <div class="project-copy">
-              <p class="project-meta">OPEN SKILL ECOSYSTEM</p>
-              <h3>Kanvis 开放 Skill 生态</h3>
-              <p>按经营任务整理 Kanvis 自有 Skill 与优秀开源 Skill，覆盖研究、写作、图片、PPT、视频和自动化。</p>
+              <p class="project-meta">OPEN SOURCE · MIT</p>
+              <h3>Kanvis Article to Video</h3>
+              <p>把文章、课程稿或口播内容整理成结构化视频任务，连接脚本、数字人、字幕、镜头与可编辑项目。</p>
             </div>
             <div class="project-actions">
-              <span class="status">持续更新</span>
-              <a class="arrow-link" href="open/?tab=skill">进入生态 <span aria-hidden="true">→</span></a>
+              <span class="status">MIT 开源 · v0.3.0</span>
+              <a class="arrow-link" href="https://github.com/Kanvis-chen/kanvis-video" target="_blank" rel="noopener">查看源码 <span aria-hidden="true">↗</span></a>
             </div>
           </article>
 
           <article class="project-row">
             <div class="project-index">03</div>
             <div class="project-copy">
-              <p class="project-meta">FREE EDITABLE WORKBENCH</p>
-              <h3>Kanvis Studio</h3>
-              <p>面向口播、数字人与课程视频的本地可编辑工作台。Skill 可从 Codex 直接打开；Obsidian 集成正在内测，用于管理项目并进入同一个 Kanvis Studio。编辑与渲染默认在本机完成。</p>
+              <p class="project-meta">OPEN SKILL ECOSYSTEM</p>
+              <h3>Kanvis 开放 Skill 生态</h3>
+              <p>按经营任务整理 Kanvis 自有 Skill 与优秀开源 Skill，覆盖研究、写作、图片、PPT、视频和自动化。群友原创 Skill 持续收录中。</p>
             </div>
             <div class="project-actions">
-              <span class="status">交互原型</span>
-              <a class="arrow-link" href="open/?tab=workbench">了解本地工作台 <span aria-hidden="true">→</span></a>
+              <span class="status">持续收录</span>
+              <a class="arrow-link" href="open/?tab=skill">进入生态 <span aria-hidden="true">→</span></a>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="statement" id="about">
+      <div class="page-shell statement-grid">
+        <div>
+          <p class="section-kicker">ABOUT</p>
+          <h2>关于康少 Kanvis</h2>
+          <div class="statement-portrait">
+            <img src="assets/kanvis-avatar.png" alt="康少 Kanvis">
+          </div>
+        </div>
+        <div class="statement-copy">
+          <p>AI 工具越来越多，但工具本身不是生意。真正重要的是找到一个值得解决、有人愿意付费的问题，再把专业能力连接成内容、产品、成交与交付。</p>
+          <p>Kanvis 是我给这套 AI 协作系统起的名字，灵感来自 Jarvis。康少是我本人；我会把 Skill、工作流和工具放进真实的内容与经营任务里，公开构建过程，也记录那些没有跑通的版本。</p>
+          <h3 class="statement-direction">Kanvis System 长期进化方向</h3>
+          <p class="statement-direction-copy">现在的 Kanvis 是一条内容视频流水线：从文章到分镜、从分镜到工作台、从工作台到可发布的成片。这只是起点。</p>
+          <p class="statement-direction-copy">长期方向是让 AI 进入经营的每一个环节——选题、内容、获客、交付、复盘——形成一个可检查、可恢复、可演进的 AI 经营系统。内容流水线是这条路径上第一个跑通的部分，后面的能力会按真实经营需求逐步接入，而不是一次性画饼。</p>
         </div>
       </div>
     </section>
@@ -167,14 +628,18 @@
 
         <div class="course-detail">
           <ol class="curriculum">
-            <li><span>01</span><div><strong>搭好 Agent 工作环境</strong><p>Codex、Skill 调用、知识库与任务协作。</p></div></li>
-            <li><span>02</span><div><strong>形成内容生产工作流</strong><p>选题、脚本、口播、数字人与可编辑视频。</p></div></li>
-            <li><span>03</span><div><strong>管理可复用内容资产</strong><p>使用 Kanvis Content OS 管理选题、脚本、素材和视频任务。</p></div></li>
+            <li><span>01</span><div><strong>认知重启：重新理解 AI 协作</strong><p>从"用工具"到"建系统"的思维转变，明确 AI 在经营中的角色。</p></div></li>
+            <li><span>02</span><div><strong>搭好 Agent 工作环境</strong><p>Codex、Skill 调用、知识库配置与任务协作基础。</p></div></li>
+            <li><span>03</span><div><strong>选题与脚本生成工作流</strong><p>用 AI 辅助选题、结构化脚本与口播文案生成。</p></div></li>
+            <li><span>04</span><div><strong>口播、数字人与视频合成</strong><p>配音、数字人、字幕、分镜到可编辑视频项目。</p></div></li>
+            <li><span>05</span><div><strong>PPT、海报与图表可视化</strong><p>数据可视化、演示文稿与视觉素材快速产出。</p></div></li>
+            <li><span>06</span><div><strong>Kanvis Content OS 内容资产管理</strong><p>使用 Kanvis Content OS 管理选题、脚本、素材和视频任务。</p></div></li>
+            <li><span>07</span><div><strong>内容获客与经营闭环</strong><p>把内容工作流接入获客、交付与复盘，形成可复用经营系统。</p></div></li>
           </ol>
           <div class="course-cta">
             <div>
               <strong>已开放报名</strong>
-              <p>首期课程已开放，点击查看完整课程说明并下单。</p>
+              <p>首期课程已开放，点击查看完整课程说明并报名。</p>
             </div>
             <a class="button button-primary" href="course.html">查看课程并报名</a>
           </div>
@@ -193,21 +658,8 @@
         </div>
 
         <div class="service-grid">
-          <article class="service-card service-card-feature">
-            <div class="service-card-head"><span class="service-no">01 / DIAGNOSIS</span><span class="status">快诊</span></div>
-            <h3>经营问题快诊</h3>
-            <div class="service-price"><strong>¥299</strong><span>30分钟 · 单一问题</span></div>
-            <p>适合已经有真实业务问题、但还不确定优先级的人。围绕一个经营、获客或 AI 应用问题，快速判断下一步动作。</p>
-            <ul>
-              <li>课前提交问题与必要背景</li>
-              <li>30分钟线上问题快诊</li>
-              <li>三条下一步建议；升级陪跑可抵扣</li>
-            </ul>
-            <button class="arrow-link service-open" type="button" data-service-open="diagnosis">了解快诊内容 <span aria-hidden="true">→</span></button>
-          </article>
-
           <article class="service-card">
-            <div class="service-card-head"><span class="service-no">02 / PRACTICE</span><span class="status status-live">申请制</span></div>
+            <div class="service-card-head"><span class="service-no">01 / PRACTICE</span><span class="status status-live">申请制</span></div>
             <h3>AI商业化落地实践 28天陪跑</h3>
             <div class="service-price"><strong>¥6,980</strong><span>28天 · 陪跑服务</span></div>
             <p>围绕一个真实的内容获客或 AI 系统落地问题，陪你把目标、流程和工具接起来，完成一轮可执行、可复盘的实践。</p>
@@ -220,7 +672,7 @@
           </article>
 
           <article class="service-card">
-            <div class="service-card-head"><span class="service-no">03 / ENTERPRISE</span><span class="status">申请制</span></div>
+            <div class="service-card-head"><span class="service-no">02 / ENTERPRISE</span><span class="status">申请制</span></div>
             <h3>企业 AI 赋能与系统落地</h3>
             <div class="service-price"><strong>按场景评估</strong><span>应用诊断 · 团队培训 · 场景试点</span></div>
             <p>面向有明确业务目标、项目负责人和执行团队的企业，从一个高价值场景开始，让 AI 真正进入业务流程。</p>
@@ -233,7 +685,7 @@
           </article>
 
           <article class="service-card">
-            <div class="service-card-head"><span class="service-no">04 / PARTNERSHIP</span><span class="status">合作评估</span></div>
+            <div class="service-card-head"><span class="service-no">03 / PARTNERSHIP</span><span class="status">合作评估</span></div>
             <h3>AI 产品、品牌与商务合作</h3>
             <div class="service-price"><strong>项目评估</strong><span>产品体验 · 内容共创 · 生态合作</span></div>
             <p>面向希望触达创作者、AI 实践者与小团队的 AI 产品、品牌和生态伙伴。</p>
@@ -249,7 +701,7 @@
             <div class="service-card-head"><span class="service-no">00 / COURSE</span><span class="status status-live">已开放</span></div>
             <h3>Kanvis AI 内容系统实操课</h3>
             <div class="service-price"><strong>¥980</strong><span>录播主课 · 永久回看 · 学员社群</span></div>
-            <p>给已经开始使用 AI、但还没有形成稳定内容生产系统的人。用 Codex、Skill 和 Kanvis Content OS，把选题、脚本、素材与视频任务接成一条可复用的工作流。</p>
+            <p>¥980 录播主课，系统学习从选题、脚本到可编辑视频的 AI 内容生产工作流。包含 Kanvis Content OS 插件与学员社群。</p>
             <ul>
               <li>7 大模块：从认知重启到 PPT / 海报 / 图表进阶</li>
               <li>价值堆叠 ¥3,500 的交付，首期售价 ¥980</li>
@@ -324,14 +776,101 @@
       </div>
     </section>
 
-    <section class="closing">
-      <div class="page-shell closing-layout">
-        <p class="section-kicker">KEEP BUILDING</p>
-        <h2>从真实问题出发，<br>做出真正能运行的 AI 经营系统。</h2>
-        <div class="closing-copy">
-          <p>从 Skill、内容到产品与交付，Kanvis 正在把真实业务中的关键动作连接起来。这里会持续更新开源 Skill、免费工具、课程和公开实验。</p>
-          <a class="button button-light" href="https://github.com/Kanvis-chen" target="_blank" rel="noopener">访问 Kanvis GitHub ↗</a>
+    <section class="faq" id="faq" aria-labelledby="faq-title">
+      <div class="page-shell">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">FAQ / 常见问题</p>
+            <h2 id="faq-title">常见问题</h2>
+          </div>
+          <p>关于 Kanvis 视频流水线、本地工作台和服务方式的常见疑问。</p>
         </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Kanvis 是免费的吗？</summary>
+            <div class="faq-answer">
+              <p>Kanvis Video 和 Kanvis Studio 基于 MIT 开源，免费使用。云端供应商（HeyGen、MiniMax 等）费用按用量自付。课程和服务是付费的。</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>我需要哪些技术基础？</summary>
+            <div class="faq-answer">
+              <p>熟悉 Codex 或类似 AI 编程工具。如果你是创作者但不是开发者，建议先从课程入手。</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Kanvis 和其他 AI 视频生成有什么区别？</summary>
+            <div class="faq-answer">
+              <p>不是一次性生成不可修改的视频，而是把文章重新导演成可检查、可恢复、可替换供应商的视频项目。每次编辑都落到真实工程中的轨道、片段、字幕和特效上。</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>我可以用自己的声音和肖像吗？</summary>
+            <div class="faq-answer">
+              <p>只处理用户拥有或明确获授权的素材。新声音或新数字人先生成 10-15 秒预览，再决定是否生成完整视频。</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>项目数据保存在哪里？</summary>
+            <div class="faq-answer">
+              <p>工程、聊天记录和版本数据保存在本机；密钥只通过环境变量配置，不写入仓库或日志。未配置的云端能力不会影响本地编辑。</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Kanvis 适合谁？</summary>
+            <div class="faq-answer">
+              <p>已经开始使用 AI、但还没有形成稳定内容生产系统的创作者；有真实经营问题、希望让 AI 进入业务流程的小团队主理人。</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Kanvis 创作者社区 ¥199 能得到什么？</summary>
+            <div class="faq-answer">
+              <p>五样东西：① 康少亲自答疑，有问题直接问；② 50+ 节实战内容与 20 个 SOP（创业系统、自媒体方法、AI 工具等，持续更新）；③ 17+ 精选 Skill 直接用；④ 一群在用 AI 做事的人互相交流；⑤ 后续升级 ¥980 Kanvis AI 内容系统实操课可抵扣。</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Kanvis 开放 Skill 生态和创作者社区有什么区别？</summary>
+            <div class="faq-answer">
+              <p><strong>Kanvis 开放 Skill 生态</strong>是免费的——任何人都可以浏览和使用收录的 Skill，也可以提交自己的 Skill。好的 Skill 我帮你收录到官网展示，不收费，不绑定。</p>
+              <p><strong>Kanvis 创作者社区</strong>是付费的——¥199 获得康少亲自答疑、50+ 节实战内容与 20 个 SOP（创业系统、自媒体方法、AI 工具等）、17+ 精选 Skill 直接用，以及一群在用 AI 做事的人互相交流。</p>
+              <p>两者完全独立：提交 Skill 不需要付费，付费也不影响 Skill 是否被收录。社区里的人可能做出好 Skill，但 Skill 质量是唯一收录标准。</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>¥199 是首期价格吗？以后会涨吗？</summary>
+            <div class="faq-answer">
+              <p>¥199 是首期价格，随着社区内容和人数增长，后续会涨价。现在加入的成员永久享受首期价格，不因涨价额外补费。</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>¥980 课程和 ¥199 社区内容重复吗？</summary>
+            <div class="faq-answer">
+              <p>不重复，是递进关系。<strong>¥199 社区</strong>是入门：康少答疑 + 50+ 节实战内容与 20 个 SOP + 社群共学，适合想先了解 AI 内容生产、解决具体问题的人。<strong>¥980 课程</strong>是系统课：7 大模块从认知到经营闭环，配套 Kanvis Content OS 插件，适合想搭建完整内容生产系统的人。社区成员后续升级课程可抵扣 ¥199。</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>课程和 28 天陪跑有什么区别？</summary>
+            <div class="faq-answer">
+              <p><strong>课程（¥980）</strong>是录播自学 + 学员社群，你按自己的节奏学习，搭建通用的内容生产工作流。<strong>28 天陪跑（¥6,980）</strong>是 1v1 深度服务：围绕你一个真实的经营目标（内容获客、AI 落地等），康少陪你定目标、搭流程、跑通第一轮实践，28 天内完成一个可运行版本并确定下一轮迭代方向。简单说：课程教你"怎么做"，陪跑帮你"做出来"。</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>28 天陪跑具体怎么跑？</summary>
+            <div class="faq-answer">
+              <p>申请制，先沟通确认你的目标是否适合。正式陪跑分三个阶段：① 第 1 周——明确一个具体目标，拆解现状与约束；② 第 2-3 周——搭建人和 AI 协作的工作流程，在真实任务中跑通；③ 第 4 周——完成可运行版本，复盘结果并确定下一轮迭代方向。全程康少直接对接，不是助教代答。</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta" id="join">
+      <div class="page-shell">
+        <p class="section-kicker" style="color:rgba(255,255,255,.5);margin-bottom:12px;">START HERE</p>
+        <h2>准备好开始了吗？</h2>
+        <p>¥199 加入 Kanvis 创作者社区，获得康少亲自答疑、50+ 节实战内容与 20 个 SOP，和一群在用 AI 做事的人。</p>
+        <a class="button button-primary" href="#join-modal" onclick="alert('付费链接即将上线，目前可通过 X / 公众号私信「康少」联系我入群，备注「199」')">加入 Kanvis 创作者社区 ¥199</a>
+        <p class="light-touch">还没准备好？<a href="https://my.feishu.cn/share/base/shrcnLa2i2JpSeCvYqpPoDDJw7e" target="_blank" rel="noopener">参与产品内测 / 填写需求</a> · <a href="https://github.com/Kanvis-chen" target="_blank" rel="noopener">GitHub</a> · <a href="https://x.com/kanvis_chen" target="_blank" rel="noopener">X</a></p>
       </div>
     </section>
   </main>
@@ -339,7 +878,7 @@
   <footer class="site-footer">
     <div class="page-shell footer-row">
       <span>© <span data-year></span> 康少 Kanvis</span>
-      <span>AI Collaboration · Content System · Business Practice</span>
+      <span>AI Creator OS · Skill Ecosystem · Building in Public</span>
       <a href="#top">回到顶部 ↑</a>
     </div>
   </footer>
