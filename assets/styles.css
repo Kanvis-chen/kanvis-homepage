@@ -371,10 +371,137 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 .statement { background: #fff; }
 
+/* ── About: two-column narrative layout ── */
 .statement-grid {
   display: grid;
-  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-  gap: 96px;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 72px;
+  align-items: stretch;
+}
+
+/* Left column: title → philosophy → vision callout */
+.statement-main {
+  padding-top: 8px;
+}
+
+.statement-body {
+  margin-top: 28px;
+  color: #3d4543;
+  font-size: 17px;
+  line-height: 1.72;
+}
+
+.statement-body p { margin: 0 0 18px; }
+.statement-body p:last-child { margin-bottom: 0; }
+
+/* Vision callout — left accent border, subtle bg */
+.statement-vision {
+  margin-top: 36px;
+  padding: 24px 28px;
+  border-left: 3px solid #1a73e8;
+  background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+  border-radius: 0 12px 12px 0;
+}
+
+.vision-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #1a73e8;
+  margin-bottom: 12px;
+}
+
+.statement-vision p {
+  margin: 0 0 10px;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: #2d3748;
+}
+.statement-vision p:last-child { margin-bottom: 0; }
+
+/* Right column: profile panel — stretches to balance left content */
+.statement-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 32px 36px;
+  background: #fafbfc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  flex: 1;
+}
+
+.statement-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+  filter: grayscale(100%);
+  transition: filter .3s ease, transform .3s ease;
+  margin-bottom: 20px;
+}
+.statement-avatar:hover {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+.profile-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+.profile-card-info strong {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a202c;
+  letter-spacing: -.01em;
+}
+.profile-card-info span {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #718096;
+}
+
+/* Bio text inside profile card */
+.profile-card-bio {
+  margin: 20px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid #e2e8f0;
+  font-size: 14.5px;
+  line-height: 1.68;
+  color: #4a5568;
+}
+
+/* Tag row */
+.profile-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.profile-tag {
+  display: inline-block;
+  padding: 5px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #4a5568;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 100px;
+  letter-spacing: .01em;
 }
 
 .statement h2,
@@ -386,53 +513,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
   font-size: 43px;
   line-height: 1.22;
   letter-spacing: 0;
-}
-
-.statement-copy {
-  padding-top: 24px;
-  color: #3d4543;
-  font-size: 17px;
-}
-
-.statement-copy p { margin: 0 0 20px; }
-
-.statement-byline {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 28px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--line);
-}
-
-.statement-avatar {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--paper);
-  box-shadow: 0 0 0 1px var(--line);
-  filter: grayscale(100%);
-  flex-shrink: 0;
-}
-
-.statement-byline-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.statement-byline-text strong {
-  font-size: 15px;
-  font-weight: 750;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-}
-
-.statement-byline-text span {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.4;
 }
 
 .quote-line {
@@ -935,6 +1015,12 @@ a.resource-item:hover { background: var(--soft); }
   .hero-lead { max-width: 510px; }
   .build-status { width: min(570px, 100%); }
   .statement-grid, .course-layout { gap: 54px; }
+  .statement-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); }
+  .profile-card { flex-direction: row; flex-wrap: wrap; text-align: left; padding: 28px 24px; gap: 16px; align-items: flex-start; }
+  .statement-avatar { width: 72px; height: 72px; margin-bottom: 0; }
+  .profile-card-info { margin-top: 0; }
+  .profile-card-bio { width: 100%; border-top-color: #e2e8f0; padding-top: 16px; margin-top: 12px; }
+  .profile-card-tags { justify-content: flex-start; }
   .project-feature { grid-template-columns: 48px minmax(0, .9fr) minmax(300px, 1.1fr); }
   .closing-layout { grid-template-columns: 100px minmax(0, 1fr); }
   .closing-copy { grid-column: 2; }
@@ -986,8 +1072,12 @@ a.resource-item:hover { background: var(--soft); }
 
   .statement, .projects, .course, .services, .resources, .closing { padding: 72px 0; }
   .statement-grid, .course-layout, .section-heading { grid-template-columns: 1fr; gap: 30px; }
+  .statement-sidebar { display: flex; }
+  .profile-card { flex-direction: column; text-align: center; }
+  .profile-card-bio { text-align: center; }
+  .statement-avatar { margin-bottom: 16px; }
+  .statement-vision { padding: 20px; }
   .statement h2, .section-heading h2, .course h2, .closing h2 { font-size: 34px; }
-  .statement-copy { padding-top: 0; font-size: 16px; }
   .statement-byline { margin-bottom: 20px; padding-bottom: 16px; }
   .statement-avatar { width: 52px; height: 52px; }
   .section-heading { align-items: start; margin-bottom: 34px; }
