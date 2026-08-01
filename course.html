@@ -313,9 +313,11 @@ body{background:#FAFBFC;color:#0F172A;font-family:'Noto Sans SC','Inter',sans-se
 .step-item .num{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#059669,#10B981);border:none;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0}
 .step-item .text{font-size:15px;color:#334155}
 .qr-area{display:flex;gap:32px;justify-content:center;margin-bottom:40px}
-.qr-box{background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:24px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
-.qr-box .qr-placeholder{width:140px;height:140px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#94A3B8}
-.qr-box .label{font-size:13px;color:#64748B;font-weight:500}
+.qr-box{background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:36px 40px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.06)}
+.qr-box img{display:block;margin:0 auto 20px;max-width:100%;border-radius:12px;background:#fff}
+.qr-box .qr-placeholder{width:220px;height:220px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#94A3B8}
+.qr-box .label{font-size:15px;color:#334155;font-weight:600;line-height:1.9;letter-spacing:.3px}
+.qr-box .label span{font-weight:400}
 .risk-reversal{margin-bottom:40px;padding:24px;background:rgba(16,185,129,0.04);border:1px solid rgba(16,185,129,0.15);border-radius:16px;width:100%;max-width:600px}
 .risk-reversal p{font-size:14px;color:#059669;font-weight:600;line-height:1.8}
 .final-outcome{width:100%;max-width:600px;text-align:left;margin-bottom:40px}
@@ -363,6 +365,7 @@ body{background:#FAFBFC;color:#0F172A;font-family:'Noto Sans SC','Inter',sans-se
 .problem-grid,.target-grid,.compare-wrapper,.focus-checklist,.case-grid,.price-compare,.auth-grid,.value-breakdown-grid{grid-template-columns:1fr}
 .screen h2{font-size:26px}
 .price-main-box .price-display{font-size:64px}
+.cta-price-box{padding:32px 24px}
 .cta-price-box .price{font-size:72px}
 .cta-title{font-size:32px}
 .cta-investment .investment-title{font-size:32px}
@@ -370,6 +373,9 @@ body{background:#FAFBFC;color:#0F172A;font-family:'Noto Sans SC','Inter',sans-se
 .instructor-box{padding:24px}
 .compare-col{padding:20px}
 .value-anchor{padding:24px}
+.qr-box{padding:28px 24px;border-radius:18px}
+.qr-box img, .qr-box .qr-placeholder{width:200px;height:200px}
+.qr-box .label{font-size:14px;line-height:1.8}
 }
 </style>
 </head>
@@ -1046,8 +1052,8 @@ body{background:#FAFBFC;color:#0F172A;font-family:'Noto Sans SC','Inter',sans-se
 
   <div class="qr-area">
     <div class="qr-box">
-      <img src="assets/kanvis-ta-wechat-qr.jpg" alt="康少助教微信二维码 · 扫码添加后发送支付截图入群" width="140" height="140" style="border-radius:8px;display:block;margin:0 auto 12px;max-width:100%;" loading="lazy">
-      <div class="label">扫码添加助教（康少2）<br><span style="color:#94A3B8;font-size:12px;">发送支付截图 → 拉群 + 开通课程</span></div>
+      <img src="assets/kanvis-ta-wechat-qr.jpg" alt="康少助教微信二维码 · 扫码添加后发送支付截图入群" width="220" height="220" loading="lazy">
+      <div class="label">扫码添加助教（康少2）<br><span>发送支付截图 → 拉群 + 开通课程</span></div>
     </div>
   </div>
 
