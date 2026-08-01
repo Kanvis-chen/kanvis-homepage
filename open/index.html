@@ -315,13 +315,19 @@
       </a>
       <nav class="ko-tabs" role="tablist" aria-label="Kanvis开放生态页面">
         <button class="ko-tab is-active" type="button" role="tab" aria-selected="true" data-tab="overview">
-          <svg class="kv-svg" viewBox="0 0 24 24" width="14" height="14"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>开放首页
+          <svg class="kv-svg" viewBox="0 0 24 24" width="14" height="14"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>🏠 开放首页
         </button>
         <button class="ko-tab" type="button" role="tab" aria-selected="false" data-tab="skill">
-          <svg class="kv-svg" viewBox="0 0 24 24" width="14" height="14"><path d="M12 3v18M3 12h18"/><path d="m5 5 14 14M19 5 5 19"/></svg>Skill生态
+          <svg class="kv-svg" viewBox="0 0 24 24" width="14" height="14"><path d="M12 3v18M3 12h18"/><path d="m5 5 14 14M19 5 5 19"/></svg>🧰 Skill分层生态
+        </button>
+        <button class="ko-tab" type="button" role="tab" aria-selected="false" data-tab="packages" style="color:var(--amber);font-weight:600">
+          <svg class="kv-svg" viewBox="0 0 24 24" width="14" height="14"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>🎁 资源领取中心
+        </button>
+        <button class="ko-tab" type="button" role="tab" aria-selected="false" data-tab="services" style="color:var(--green);font-weight:600">
+          <svg class="kv-svg" viewBox="0 0 24 24" width="14" height="14"><path d="M20 7h-3V5a3 3 0 0 0-6 0v2H8a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zm-7-2a1 1 0 0 1 2 0v2h-2V5z"/></svg>💼 会员与服务
         </button>
         <button class="ko-tab" type="button" role="tab" aria-selected="false" data-tab="workbench">
-          <svg class="kv-svg" viewBox="0 0 24 24" width="14" height="14"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>工作台说明
+          <svg class="kv-svg" viewBox="0 0 24 24" width="14" height="14"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>🛠 工作台说明
         </button>
       </nav>
       <div class="ko-top-actions">
@@ -342,7 +348,8 @@
             <p class="ko-intro-copy">面向创作者与AI实践者的免费开放生态。这里持续发布Kanvis官方Skill与创作工具，也收录来源明确的图片、PPT和视频开放Skill。</p>
             <p class="ko-intro-author">由康少 Kanvis 发起 · <a href="../">了解作者与Kanvis主页 →</a></p>
             <div class="ko-intro-actions">
-              <button class="ko-btn ko-btn-primary" type="button" data-open-tab="skill">浏览Skill生态</button>
+              <button class="ko-btn ko-btn-primary" type="button" data-open-tab="packages">🎁 免费领最常用 3 套集成版</button>
+              <button class="ko-btn" type="button" data-open-tab="skill">浏览 Skill 分层生态</button>
               <button class="ko-btn" type="button" data-open-tab="workbench">了解本地工作台</button>
               <a class="ko-btn ko-btn-quiet" href="https://my.feishu.cn/share/base/shrcnLa2i2JpSeCvYqpPoDDJw7e" target="_blank" rel="noopener">申请加入内测群 ↗</a>
             </div>
@@ -375,13 +382,14 @@
         </section>
 
         <section class="ko-section ko-support-band" aria-labelledby="support-title">
-          <div class="ko-support-copy"><h3 id="support-title">需要进一步支持？</h3><p>从快速诊断、系统学习到28天落地陪跑，根据当前问题选择合适的支持。</p></div>
+          <div class="ko-support-copy"><h3 id="support-title">需要进一步支持？</h3><p>从会员社群、快速诊断、系统学习到28天落地陪跑，根据当前问题选择合适的支持。</p></div>
           <div class="ko-support-options" aria-label="Kanvis 付费支持">
-            <div class="ko-support-option"><span>¥299</span><strong>经营问题快诊</strong></div>
-            <div class="ko-support-option"><span>¥980</span><strong>AI 内容系统实操课</strong></div>
-            <div class="ko-support-option"><span>¥6,980</span><strong>28天 AI 商业落地陪跑</strong></div>
+            <div class="ko-support-option" style="border-color:var(--amber);box-shadow:0 0 0 1px var(--amber-soft)"><span style="color:var(--amber)">¥199</span><strong>🪙 会员社群（新）</strong></div>
+            <div class="ko-support-option"><span>¥299</span><strong>💊 1v1 诊断</strong></div>
+            <div class="ko-support-option"><span>¥980</span><strong>🎓 AI 内容系统课</strong></div>
+            <div class="ko-support-option"><span>¥6,980</span><strong>🚀 28天陪跑</strong></div>
           </div>
-          <a class="ko-btn ko-btn-primary" href="../#services">查看课程与服务 →</a>
+          <button class="ko-btn ko-btn-primary" type="button" data-open-tab="services">查看完整会员与服务 →</button>
         </section>
 
         <section class="ko-section" aria-labelledby="ecosystem-scope">
@@ -410,35 +418,241 @@
         <div class="ko-skill-summary"><span>当前显示 <strong data-skill-count>17</strong> 项</span><span>外部Skill保留原作者与许可证；收录不代表Kanvis联合出品</span></div>
         <div data-skill-groups>
           <section class="ko-skill-group" data-skill-group><div class="ko-skill-group-head"><h3>Kanvis官方开源路线</h3><p>已发布项目提供源码与说明，规划中的项目明确标注状态</p></div><div class="ko-skill-grid">
-            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="open" data-skill-search="Kanvis Article to Video kanvis-article-to-video 文章 口播 数字人 视频 分镜 字幕 已开源 官方"><div class="ko-skill-badges"><span class="ko-chip ko-chip-live">Kanvis官方</span><span class="ko-chip ko-chip-live">MIT开源</span><span class="ko-chip">Codex本地运行</span></div><h3>Kanvis Article to Video</h3><p>把文章、课程稿和专业知识转成口播脚本、分镜、字幕、素材任务与可编辑视频项目。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/Kanvis-chen/kanvis-video" target="_blank" rel="noopener">查看源码与运行说明 →</a></div></article>
-            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="planned" data-skill-search="Kanvis AI经营问题 自检 定位 产品 内容 销售 交付 数据 待开源 官方"><div class="ko-skill-badges"><span class="ko-chip ko-chip-live">Kanvis官方</span><span class="ko-chip">待开源</span></div><h3>AI经营问题自检 Skill</h3><p>用公开问题清单自查定位、产品、内容、销售、交付与数据，形成改进线索。</p></article>
-            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="planned" data-skill-search="Kanvis AI 素材 生成 编排 图片 语音 数字人 视频 BYOK 待开源 官方"><div class="ko-skill-badges"><span class="ko-chip ko-chip-live">Kanvis官方</span><span class="ko-chip">待开源</span></div><h3>AI素材生成编排 Skill</h3><p>统一编排图片、语音、数字人和视频生成任务，支持BYOK、费用确认与结果回传。</p></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="open" data-skill-search="Kanvis Article to Video kanvis-article-to-video 文章 口播 数字人 视频 分镜 字幕 已开源 官方"><div class="ko-skill-badges"><span class="ko-chip ko-chip-live">Kanvis官方</span><span class="ko-chip ko-chip-live">MIT开源</span><span class="ko-chip">Codex本地运行</span></div><h3>Kanvis Article to Video</h3><p>把文章、课程稿和专业知识转成口播脚本、分镜、字幕、素材任务与可编辑视频项目。</p><div class="ko-card-footer" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><a class="ko-inline" href="https://my.feishu.cn/share/base/shrcnLa2i2JpSeCvYqpPoDDJw7e" target="_blank" rel="noopener">📄 看案例→</a><button class="ko-inline" type="button" data-open-tab="packages" style="font-weight:700;color:var(--amber);text-decoration:underline;text-decoration-color:var(--amber)">🎁 领集成版→</button><a class="ko-inline ko-btn-quiet" href="https://github.com/Kanvis-chen/kanvis-video" target="_blank" rel="noopener">🔗 原项目 ↗</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="planned" data-skill-search="Kanvis AI经营问题 自检 定位 产品 内容 销售 交付 数据 待开源 官方"><div class="ko-skill-badges"><span class="ko-chip ko-chip-live">Kanvis官方</span><span class="ko-chip">待开源</span></div><h3>AI经营问题自检 Skill</h3><p>用公开问题清单自查定位、产品、内容、销售、交付与数据，形成改进线索。</p><div class="ko-card-footer" style="opacity:0.7;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><span style="color:var(--muted)">📄 开源后提供案例</span><button class="ko-inline" type="button" disabled style="color:var(--muted);cursor:not-allowed">🎁 开源后可领取</button><span style="color:var(--muted)">🔗 未开源</span></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="planned" data-skill-search="Kanvis AI 素材 生成 编排 图片 语音 数字人 视频 BYOK 待开源 官方"><div class="ko-skill-badges"><span class="ko-chip ko-chip-live">Kanvis官方</span><span class="ko-chip">待开源</span></div><h3>AI素材生成编排 Skill</h3><p>统一编排图片、语音、数字人和视频生成任务，支持BYOK、费用确认与结果回传。</p><div class="ko-card-footer" style="opacity:0.7;display:flex;flex-wrap:wrap;gap:10px;align-items:center"><span style="color:var(--muted)">📄 开源后提供案例</span><button class="ko-inline" type="button" disabled style="color:var(--muted);cursor:not-allowed">🎁 开源后可领取</button><span style="color:var(--muted)">🔗 未开源</span></div></article>
           </div></section>
 
           <section class="ko-skill-group" data-skill-group><div class="ko-skill-group-head"><h3>图片与视觉Skill</h3><p>生成图片、图文卡片与视觉设计</p></div><div class="ko-skill-grid">
-            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 图片 生成 Baoyu Image Gen 多模型"><div class="ko-skill-badges"><span class="ko-chip">Baoyu</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>Baoyu Image Gen</h3><p>通过多个模型供应商完成文生图、参考图、尺寸控制和批量生成。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/JimLiu/baoyu-skills" target="_blank" rel="noopener">查看原项目 →</a></div></article>
-            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 图片 小红书 图文卡片 Baoyu XHS Images"><div class="ko-skill-badges"><span class="ko-chip">Baoyu</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>Baoyu XHS Images</h3><p>把内容拆成适合小红书发布的系列图文卡片，并支持风格、布局与配色选择。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/JimLiu/baoyu-skills" target="_blank" rel="noopener">查看原项目 →</a></div></article>
-            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 图片 OpenAI ImageGen Codex 生成 编辑"><div class="ko-skill-badges"><span class="ko-chip">OpenAI Codex</span><span class="ko-chip">官方公开示例</span></div><h3>OpenAI ImageGen Skill</h3><p>用于生成或编辑位图素材，覆盖照片、插画、纹理、透明背景素材和视觉变体。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/openai/codex/blob/main/codex-rs/skills/src/assets/samples/imagegen/SKILL.md" target="_blank" rel="noopener">查看源码 →</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 图片 生成 Baoyu Image Gen 多模型"><div class="ko-skill-badges"><span class="ko-chip">Baoyu</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>Baoyu Image Gen</h3><p>通过多个模型供应商完成文生图、参考图、尺寸控制和批量生成。</p><div class="ko-card-footer" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button class="ko-inline" type="button" data-open-tab="packages">📄 看案例→</button><button class="ko-inline" type="button" data-open-tab="packages" style="font-weight:700;color:var(--amber);text-decoration:underline;text-decoration-color:var(--amber)">🎁 领集成版→</button><a class="ko-inline ko-btn-quiet" href="https://github.com/JimLiu/baoyu-skills" target="_blank" rel="noopener">🔗 原项目 ↗</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 图片 小红书 图文卡片 Baoyu XHS Images"><div class="ko-skill-badges"><span class="ko-chip">Baoyu</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>Baoyu XHS Images</h3><p>把内容拆成适合小红书发布的系列图文卡片，并支持风格、布局与配色选择。</p><div class="ko-card-footer" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button class="ko-inline" type="button" data-open-tab="packages">📄 看案例→</button><button class="ko-inline" type="button" data-open-tab="packages" style="font-weight:700;color:var(--amber);text-decoration:underline;text-decoration-color:var(--amber)">🎁 领集成版→</button><a class="ko-inline ko-btn-quiet" href="https://github.com/JimLiu/baoyu-skills" target="_blank" rel="noopener">🔗 原项目 ↗</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 图片 OpenAI ImageGen Codex 生成 编辑"><div class="ko-skill-badges"><span class="ko-chip">OpenAI Codex</span><span class="ko-chip">官方公开示例</span></div><h3>OpenAI ImageGen Skill</h3><p>用于生成或编辑位图素材，覆盖照片、插画、纹理、透明背景素材和视觉变体。</p><div class="ko-card-footer" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button class="ko-inline" type="button" data-open-tab="packages">📄 看案例→</button><button class="ko-inline" type="button" data-open-tab="packages" style="font-weight:700;color:var(--amber);text-decoration:underline;text-decoration-color:var(--amber)">🎁 领集成版→</button><a class="ko-inline ko-btn-quiet" href="https://github.com/openai/codex/blob/main/codex-rs/skills/src/assets/samples/imagegen/SKILL.md" target="_blank" rel="noopener">🔗 原项目 ↗</a></div></article>
           </div></section>
 
           <section class="ko-skill-group" data-skill-group><div class="ko-skill-group-head"><h3>PPT与演示Skill</h3><p>从内容生成幻灯片、网页PPT与演示素材</p></div><div class="ko-skill-grid">
-            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 PPT slide deck Baoyu 幻灯片"><div class="ko-skill-badges"><span class="ko-chip">Baoyu</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>Baoyu Slide Deck</h3><p>从内容生成专业演示文稿大纲与逐页图片，并可合并为PPTX和PDF。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/JimLiu/baoyu-skills" target="_blank" rel="noopener">查看原项目 →</a></div></article>
-            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 PPT 网页PPT Guizang 歸藏 瑞士 杂志"><div class="ko-skill-badges"><span class="ko-chip">歸藏</span><span class="ko-chip ko-chip-live">AGPL-3.0</span></div><h3>Guizang PPT Skill</h3><p>生成单文件横向翻页网页PPT，提供电子杂志和瑞士国际主义等视觉风格。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/op7418/guizang-ppt-skill" target="_blank" rel="noopener">查看原项目 →</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 PPT slide deck Baoyu 幻灯片"><div class="ko-skill-badges"><span class="ko-chip">Baoyu</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>Baoyu Slide Deck</h3><p>从内容生成专业演示文稿大纲与逐页图片，并可合并为PPTX和PDF。</p><div class="ko-card-footer" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button class="ko-inline" type="button" data-open-tab="packages">📄 看案例→</button><button class="ko-inline" type="button" data-open-tab="packages" style="font-weight:700;color:var(--amber);text-decoration:underline;text-decoration-color:var(--amber)">🎁 领集成版→</button><a class="ko-inline ko-btn-quiet" href="https://github.com/JimLiu/baoyu-skills" target="_blank" rel="noopener">🔗 原项目 ↗</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 PPT 网页PPT Guizang 歸藏 瑞士 杂志"><div class="ko-skill-badges"><span class="ko-chip">歸藏</span><span class="ko-chip ko-chip-live">AGPL-3.0</span></div><h3>Guizang PPT Skill</h3><p>生成单文件横向翻页网页PPT，提供电子杂志和瑞士国际主义等视觉风格。</p><div class="ko-card-footer" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button class="ko-inline" type="button" data-open-tab="packages">📄 看案例→</button><button class="ko-inline" type="button" data-open-tab="packages" style="font-weight:700;color:var(--amber);text-decoration:underline;text-decoration-color:var(--amber)">🎁 领集成版→</button><a class="ko-inline ko-btn-quiet" href="https://github.com/op7418/guizang-ppt-skill" target="_blank" rel="noopener">🔗 原项目 ↗</a></div></article>
           </div></section>
 
           <section class="ko-skill-group" data-skill-group><div class="ko-skill-group-head"><h3>视频创作Skill</h3><p>视频转写、程序化剪辑与数字人视频生产</p></div><div class="ko-skill-grid">
-            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 视频 Video Use 剪辑 raw footage Claude Codex"><div class="ko-skill-badges"><span class="ko-chip">Browser Use</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>Video Use</h3><p>让编码Agent整理原始素材、制定剪辑策略、渲染成片并执行自动质量检查。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/browser-use/video-use" target="_blank" rel="noopener">查看原项目 →</a></div></article>
-            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 视频 HeyGen 数字人 avatar video agent"><div class="ko-skill-badges"><span class="ko-chip">HeyGen</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>HeyGen Video Skills</h3><p>围绕数字人创建和视频生产提供Agent Skill工作流，需要使用者自行配置供应商账号。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/heygen-com/skills" target="_blank" rel="noopener">查看原项目 →</a></div></article>
-            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 视频 YouTube transcript 字幕 转写 Baoyu"><div class="ko-skill-badges"><span class="ko-chip">Baoyu</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>Baoyu YouTube Transcript</h3><p>下载YouTube视频字幕、章节和封面，并整理为可继续分析和创作的文本素材。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/JimLiu/baoyu-skills" target="_blank" rel="noopener">查看原项目 →</a></div></article>
-            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 视频 Miora CardForge 知识卡片 网瘾中年 Eric Shun1989 Remotion 小红书 抖音 课程卡片"><div class="ko-skill-badges"><span class="ko-chip" style="color:var(--amber);border-color:color-mix(in srgb, var(--amber) 30%, var(--line));background:var(--amber-soft);">生态互推联盟</span><span class="ko-chip">Miora</span><span class="ko-chip ko-chip-live">开源</span></div><h3>Miora CardForge</h3><p>把文章、笔记、课程资料或素材文件夹，铸成带编号的 Miora 风格中文知识卡片，并导出经过验证的 Remotion 视频。支持横版/竖版、小红书/抖音/通用三种平台风格，使用透明 Miora 机器人 cutout 与内容感知姿势选择。</p><div class="ko-card-footer"><a class="ko-inline" href="https://github.com/Shun1989/miora-cardforge-video" target="_blank" rel="noopener">查看原项目 →</a><a class="ko-inline" href="../#ecosystem">观看演示视频 →</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 视频 Video Use 剪辑 raw footage Claude Codex"><div class="ko-skill-badges"><span class="ko-chip">Browser Use</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>Video Use</h3><p>让编码Agent整理原始素材、制定剪辑策略、渲染成片并执行自动质量检查。</p><div class="ko-card-footer" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button class="ko-inline" type="button" data-open-tab="packages">📄 看案例→</button><button class="ko-inline" type="button" data-open-tab="packages" style="font-weight:700;color:var(--amber);text-decoration:underline;text-decoration-color:var(--amber)">🎁 领集成版→</button><a class="ko-inline ko-btn-quiet" href="https://github.com/browser-use/video-use" target="_blank" rel="noopener">🔗 原项目 ↗</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 视频 HeyGen 数字人 avatar video agent"><div class="ko-skill-badges"><span class="ko-chip">HeyGen</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>HeyGen Video Skills</h3><p>围绕数字人创建和视频生产提供Agent Skill工作流，需要使用者自行配置供应商账号。</p><div class="ko-card-footer" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button class="ko-inline" type="button" data-open-tab="packages">📄 看案例→</button><button class="ko-inline" type="button" data-open-tab="packages" style="font-weight:700;color:var(--amber);text-decoration:underline;text-decoration-color:var(--amber)">🎁 领集成版→</button><a class="ko-inline ko-btn-quiet" href="https://github.com/heygen-com/skills" target="_blank" rel="noopener">🔗 原项目 ↗</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 视频 YouTube transcript 字幕 转写 Baoyu"><div class="ko-skill-badges"><span class="ko-chip">Baoyu</span><span class="ko-chip ko-chip-live">MIT</span></div><h3>Baoyu YouTube Transcript</h3><p>下载YouTube视频字幕、章节和封面，并整理为可继续分析和创作的文本素材。</p><div class="ko-card-footer" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button class="ko-inline" type="button" data-open-tab="packages">📄 看案例→</button><button class="ko-inline" type="button" data-open-tab="packages" style="font-weight:700;color:var(--amber);text-decoration:underline;text-decoration-color:var(--amber)">🎁 领集成版→</button><a class="ko-inline ko-btn-quiet" href="https://github.com/JimLiu/baoyu-skills" target="_blank" rel="noopener">🔗 原项目 ↗</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 视频 Miora CardForge 知识卡片 网瘾中年 Eric Shun1989 Remotion 小红书 抖音 课程卡片"><div class="ko-skill-badges"><span class="ko-chip" style="color:var(--amber);border-color:color-mix(in srgb, var(--amber) 30%, var(--line));background:var(--amber-soft);">生态互推联盟</span><span class="ko-chip">Miora</span><span class="ko-chip ko-chip-live">开源</span></div><h3>Miora CardForge</h3><p>把文章、笔记、课程资料或素材文件夹，铸成带编号的 Miora 风格中文知识卡片，并导出经过验证的 Remotion 视频。支持横版/竖版、小红书/抖音/通用三种平台风格，使用透明 Miora 机器人 cutout 与内容感知姿势选择。</p><div class="ko-card-footer" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><a class="ko-inline" href="../#ecosystem" target="_blank" rel="noopener">📄 看演示案例→</a><button class="ko-inline" type="button" data-open-tab="packages" style="font-weight:700;color:var(--amber);text-decoration:underline;text-decoration-color:var(--amber)">🎁 领集成版→</button><a class="ko-inline ko-btn-quiet" href="https://github.com/Shun1989/miora-cardforge-video" target="_blank" rel="noopener">🔗 原项目 ↗</a></div></article>
           </div></section>
 
           <section class="ko-skill-group" data-skill-group><div class="ko-skill-group-head"><h3>发现更多开放Skill</h3><p>继续搜索、核验来源并提交新的开放项目</p></div><div class="ko-skill-grid">
-            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 find skills 搜索 查找 安装 skills sh"><div class="ko-skill-badges"><span class="ko-chip">开放目录</span></div><h3>Skills.sh</h3><p>Kanvis生态库暂未收录时，可以继续按任务关键词查找其他公开Skill。</p><div class="ko-card-footer"><a class="ko-inline" href="https://skills.sh/" target="_blank" rel="noopener">前往Skills.sh →</a></div></article>
+            <article class="ko-card ko-skill-card" data-skill-card data-skill-type="ecosystem" data-skill-search="开放生态 find skills 搜索 查找 安装 skills sh"><div class="ko-skill-badges"><span class="ko-chip">开放目录</span></div><h3>Skills.sh</h3><p>Kanvis生态库暂未收录时，可以继续按任务关键词查找其他公开Skill。</p><div class="ko-card-footer" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center"><button class="ko-inline" type="button" data-open-tab="packages">📄 先看常用 3 套→</button><button class="ko-inline" type="button" data-open-tab="packages" style="font-weight:700;color:var(--amber);text-decoration:underline;text-decoration-color:var(--amber)">🎁 领 Kanvis 集成版→</button><a class="ko-inline ko-btn-quiet" href="https://skills.sh/" target="_blank" rel="noopener">🔗 前往 Skills.sh ↗</a></div></article>
           </div></section>
         </div>
         <div class="ko-skill-empty" data-skill-empty hidden>暂未找到匹配Skill，可以生成一份开放项目提交说明。</div>
         <div class="ko-partner" style="margin-top:12px"><div><strong>开放Skill提交说明</strong><p>项目需要有公开来源、清楚用途和可核验许可证；收录时保留原作者、原仓库与许可证信息。</p></div><button class="ko-btn ko-btn-primary" type="button" data-action="partner">填写 GitHub 提交</button></div>
+      </section>
+
+      <!-- ============== Tab③ 🎁 资源领取中心（新增 L2 留资核心） ============== -->
+      <section class="ko-panel" data-panel="packages" hidden>
+        <div class="ko-section-head">
+          <div>
+            <h2>🎁 资源领取中心</h2>
+            <p>我帮你把 3 套最高频的 AI 工作流配好了——不用翻文档、不用装依赖，填个表我发你微信。</p>
+          </div>
+          <span class="ko-chip ko-chip-live" style="background:var(--amber-soft);color:var(--amber);border-color:var(--amber)">有条件免费</span>
+        </div>
+
+        <div class="ko-grid-3" style="margin:20px 0">
+          <!-- 卡片 1：⭐口播视频 3 件套 -->
+          <article class="ko-card" style="border-color:var(--amber);box-shadow:0 0 0 2px var(--amber-soft)">
+            <div class="ko-card-head">
+              <span class="ko-chip ko-chip-live" style="background:var(--amber-soft);color:var(--amber);border-color:var(--amber)">⭐本周最热</span>
+              <div class="ko-card-title"><strong>口播视频 3 件套</strong><span>脚本拆分 · 分镜生成 · 字幕样式</span></div>
+            </div>
+            <ul style="margin:10px 0 14px;padding-left:20px;line-height:1.9;color:var(--muted)">
+              <li>脚本拆分 + 分镜生成模板</li>
+              <li>数字人 12 套参数配置</li>
+              <li>16 种字幕样式预设</li>
+            </ul>
+            <p style="margin:0"><strong>包含：</strong>zip 压缩包 + 10 分钟安装录屏</p>
+            <div class="ko-card-footer">
+              <button class="ko-btn ko-btn-primary" type="button" data-action="claim-package" data-pkg="video-3in1" data-pkg-name="口播视频 3 件套">🎁 填表领取</button>
+            </div>
+          </article>
+
+          <!-- 卡片 2：1 人公司内容工作流 -->
+          <article class="ko-card">
+            <div class="ko-card-head">
+              <span class="ko-chip ko-chip-live">常用</span>
+              <div class="ko-card-title"><strong>内容工作流 3 件套</strong><span>选题 · 脚本 · 剪辑预设</span></div>
+            </div>
+            <ul style="margin:10px 0 14px;padding-left:20px;line-height:1.9;color:var(--muted)">
+              <li>爆款选题自检模板（30 题）</li>
+              <li>8 种爆款脚本模板库</li>
+              <li>剪映/Premiere 剪辑预设包</li>
+            </ul>
+            <p style="margin:0"><strong>包含：</strong>20 个飞书文档模板 + 预设包</p>
+            <div class="ko-card-footer">
+              <button class="ko-btn ko-btn-primary" type="button" data-action="claim-package" data-pkg="content-workflow" data-pkg-name="1 人公司内容工作流">🎁 填表领取</button>
+            </div>
+          </article>
+
+          <!-- 卡片 3：5 平台一键分发 -->
+          <article class="ko-card">
+            <div class="ko-card-head">
+              <span class="ko-chip ko-chip-live">效率工具</span>
+              <div class="ko-card-title"><strong>5 平台一键分发</strong><span>小红书 · 抖音 · B站 · 公众号 · 视频号</span></div>
+            </div>
+            <ul style="margin:10px 0 14px;padding-left:20px;line-height:1.9;color:var(--muted)">
+              <li>5 平台尺寸一键裁剪脚本</li>
+              <li>平台规范 + 违禁词清单</li>
+              <li>发布前 8 项质检清单</li>
+            </ul>
+            <p style="margin:0"><strong>包含：</strong>Python 脚本 + 飞书清单表</p>
+            <div class="ko-card-footer">
+              <button class="ko-btn ko-btn-primary" type="button" data-action="claim-package" data-pkg="publish-5plat" data-pkg-name="5 平台一键分发">🎁 填表领取</button>
+            </div>
+          </article>
+        </div>
+
+        <p style="color:var(--muted)">想先看 L1 免费版本自己配？
+          <button class="ko-inline" type="button" data-open-tab="skill">去 Skill 分层生态 →</button>
+        </p>
+      </section>
+
+      <!-- ============== Tab④ 💼 会员与服务（新增完整价格阶梯） ============== -->
+      <section class="ko-panel" data-panel="services" hidden>
+        <div class="ko-section-head">
+          <div>
+            <h2>💼 会员与服务</h2>
+            <p>4 个价格档——从「先自己试试」到「我带你做」，按你的节奏选。</p>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px;margin:18px 0">
+          <!-- L4-1 会员 ¥199 -->
+          <article class="ko-card" id="l4-1">
+            <div class="ko-card-head">
+              <span class="ko-chip ko-chip-live">🪙 L4-1 · 会员</span>
+              <div class="ko-card-title"><strong>会员社群</strong><span>适合：在用 L1/L2，想省时间少踩坑</span></div>
+            </div>
+            <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:12px">
+              <div style="flex:1;min-width:280px">
+                <p style="margin:0 0 10px"><strong>10 项权益：</strong></p>
+                <ol style="margin:0;padding-left:20px;line-height:1.9;color:var(--muted)">
+                  <li>飞书会员群（500 人上限）</li>
+                  <li>每周五 1 小时答疑录屏（永久回放）</li>
+                  <li>会员专属文档库：100+ 配好参数模板</li>
+                  <li>每月一套「本月热点 AI 工作流」</li>
+                  <li>社群问问题 24h 内我亲自答</li>
+                  <li>L2 集成版全部免费领（不用填表）</li>
+                  <li>L3 自研 Skill 完整版文档</li>
+                  <li>会员直播 1 次/季度</li>
+                  <li>诊断 8 折券 1 张（半年有效）</li>
+                  <li>课程 8 折券 1 张（半年有效）</li>
+                </ol>
+              </div>
+              <div style="text-align:center;padding:20px;background:var(--bg-soft);border-radius:8px;min-width:180px">
+                <div style="font-size:32px;font-weight:700;color:var(--text);margin-bottom:4px">¥199</div>
+                <div style="color:var(--muted);margin-bottom:16px">/ 年（约 ¥17/月）</div>
+                <button class="ko-btn ko-btn-primary" type="button" disabled title="先加微信再开通">💳 加微信开通</button>
+                <div style="margin-top:10px">
+                  <a class="ko-inline" href="../" target="_blank">💬 先加微信问 10 分钟 ↗</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- L4-2 诊断 ¥299 ⭐人气最高 -->
+          <article class="ko-card" id="l4-2" style="border-color:var(--amber);box-shadow:0 0 0 2px var(--amber-soft)">
+            <div class="ko-card-head">
+              <span class="ko-chip ko-chip-live" style="background:var(--amber-soft);color:var(--amber);border-color:var(--amber)">💊 L4-2 · 人气最高⭐</span>
+              <div class="ko-card-title"><strong>1v1 诊断</strong><span>适合：不知道该先做什么，想定优先级</span></div>
+            </div>
+            <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:12px">
+              <div style="flex:1;min-width:280px">
+                <p style="margin:0 0 10px"><strong>你会得到：</strong></p>
+                <ol style="margin:0;padding-left:20px;line-height:1.9;color:var(--muted)">
+                  <li>45 分钟 1v1 腾讯会议（录屏给你）</li>
+                  <li>会后 3 页 PPT 诊断报告：你做什么/分几步/先做哪个</li>
+                  <li>2 周内微信追问权</li>
+                  <li>不合适 299 全额退（无理由）</li>
+                </ol>
+              </div>
+              <div style="text-align:center;padding:20px;background:var(--amber-soft);border-radius:8px;min-width:180px">
+                <div style="font-size:32px;font-weight:700;color:var(--amber);margin-bottom:4px">¥299</div>
+                <div style="color:var(--muted);margin-bottom:16px">/ 次（外面 1h 咨询 ≥¥999）</div>
+                <button class="ko-btn ko-btn-primary" type="button" disabled title="先加微信再预约">💳 加微信预约</button>
+                <div style="margin-top:10px">
+                  <a class="ko-inline" href="../" target="_blank">💬 加我聊两句先 ↗</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- L4-3 课程 ¥980 -->
+          <article class="ko-card" id="l4-3">
+            <div class="ko-card-head">
+              <span class="ko-chip ko-chip-live" style="background:var(--green-soft);color:var(--green);border-color:var(--green)">🎓 L4-3 · 系统课程</span>
+              <div class="ko-card-title"><strong>AI 内容系统实操课</strong><span>适合：想系统学，不想一个人瞎摸</span></div>
+            </div>
+            <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:12px">
+              <div style="flex:1;min-width:280px">
+                <p style="margin:0 0 10px"><strong>课程内容：</strong></p>
+                <ol style="margin:0;padding-left:20px;line-height:1.9;color:var(--muted)">
+                  <li>8 节逐帧录屏，共约 320 分钟</li>
+                  <li>8 次作业 + 每周批改</li>
+                  <li>课程专属小群（30 人以内）</li>
+                  <li>结课 1v1 30 分钟诊断（价值 ¥299）</li>
+                  <li>下一期：2026 年 8 月 15 日开课</li>
+                </ol>
+              </div>
+              <div style="text-align:center;padding:20px;background:var(--bg-soft);border-radius:8px;min-width:180px">
+                <div style="font-size:32px;font-weight:700;color:var(--text);margin-bottom:4px">¥980</div>
+                <div style="color:var(--muted);margin-bottom:16px">/ 期（3 个月，含辅导）</div>
+                <button class="ko-btn ko-btn-primary" type="button" disabled title="先加微信抢早鸟">🎫 抢早鸟前 10 名</button>
+                <div style="margin-top:10px">
+                  <a class="ko-inline" href="../" target="_blank">💬 加我看课程大纲 ↗</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- L5 陪跑 ¥6980 -->
+          <article class="ko-card" id="l5" style="border:2px solid var(--red-soft);">
+            <div class="ko-card-head">
+              <span class="ko-chip ko-chip-live" style="background:var(--red-soft);color:var(--red);border-color:var(--red)">🚀 L5 · 同期最多 5 人</span>
+              <div class="ko-card-title"><strong>3 个月落地陪跑</strong><span>适合：月入 ≥1 万，想 3 个月跑通落地</span></div>
+            </div>
+            <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:12px">
+              <div style="flex:1;min-width:280px">
+                <p style="margin:0 0 10px"><strong>包含：</strong></p>
+                <ol style="margin:0;padding-left:20px;line-height:1.9;color:var(--muted)">
+                  <li>3 个月内微信无限次 1v1（工作日 2h 内回）</li>
+                  <li>每周 1 次 1h 腾讯会议（录屏）</li>
+                  <li>你做的每个内容/产品，我先给「标准答案版」你照抄</li>
+                  <li>期间所有会员/诊断/课程全部免费</li>
+                  <li>2026 年 9 月档：剩 2 个名额</li>
+                </ol>
+              </div>
+              <div style="text-align:center;padding:20px;background:var(--red-soft);border-radius:8px;min-width:180px">
+                <div style="font-size:28px;font-weight:700;color:var(--red);margin-bottom:4px">¥6980</div>
+                <div style="color:var(--muted);margin-bottom:16px">/ 3 个月（同期最多 5 人）</div>
+                <button class="ko-btn ko-btn-primary" type="button" disabled style="opacity:0.6;cursor:not-allowed">💰 不直接卖</button>
+                <div style="margin-top:10px">
+                  <a class="ko-inline" href="../" target="_blank">💬 加微信先聊 30min，不合适我直说 ↗</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- 反向定位区：消除抗拒 -->
+        <section class="ko-section" style="margin-top:20px;background:var(--bg-soft);border-radius:8px;padding:20px">
+          <h3 style="margin-top:0">🔥 不想花钱？没关系</h3>
+          <ul style="line-height:2;margin:0;padding-left:18px;color:var(--muted)">
+            <li>¥199 也不想花？→ <button class="ko-inline" type="button" data-open-tab="skill">去 Skill 分层生态</button>，完全免费自己配能跑</li>
+            <li>¥299 也觉得贵？→ 加我微信（Kanvis 主页），我送你 3 份 SOP 先看看</li>
+            <li>¥6980 不适合你？→ 正常，99% 的人陪跑阶段都不适合，从 ¥199 会员开始就好</li>
+          </ul>
+        </section>
       </section>
 
       <section class="ko-panel" data-panel="workbench" hidden>
@@ -544,8 +758,8 @@
         <section class="ko-section ko-support-band" aria-labelledby="support-title">
           <div class="ko-support-copy"><h3 id="support-title">需要进一步支持？</h3><p>看完工作台说明仍想加速落地，从快速诊断、系统学习到28天陪跑，按当前问题选择合适的支持。</p></div>
           <div class="ko-support-options" aria-label="Kanvis 付费支持">
-            <div class="ko-support-option"><span>¥299</span><strong>经营问题快诊</strong></div>
-            <div class="ko-support-option"><span>¥980</span><strong>AI 内容系统实操课</strong></div>
+            <div class="ko-support-option"><span>¥299</span><strong>Kanvis AI创作者实践社群</strong></div>
+            <div class="ko-support-option"><span>¥980</span><strong>Kanvis AI内容系统实操课</strong></div>
             <div class="ko-support-option"><span>¥6,980</span><strong>28天 AI 商业落地陪跑</strong></div>
           </div>
           <a class="ko-btn ko-btn-primary" href="../#services">查看课程与服务 →</a>
@@ -573,11 +787,56 @@
       </section>
     </div>
     <div class="ko-toast" role="status" aria-live="polite"></div>
-    <div class="ko-fab" role="region" aria-label="课程与服务快速入口" data-fab>
-      <div class="ko-fab-text"><strong>需要进一步支持？</strong><span>¥299 快诊 · ¥980 实操课 · ¥6,980 陪跑</span></div>
-      <a class="ko-btn ko-btn-primary" href="../#services">查看课程与服务 →</a>
+    <div class="ko-fab" role="region" aria-label="会员与服务快速入口" data-fab>
+      <div class="ko-fab-text"><strong>还在自己配？</strong><span>¥199 会员社群 · ¥299 经营诊断 · ¥980 系统课 · ¥6,980 陪跑</span></div>
+      <button class="ko-btn ko-btn-primary" type="button" data-open-tab="services">查看会员与服务 →</button>
       <button class="ko-icon-btn ko-fab-close" type="button" data-fab-close aria-label="隐藏">×</button>
     </div>
+
+    <!-- L2 集成包领取弹窗 -->
+    <div class="ko-modal-mask" data-l2-mask hidden></div>
+    <section class="ko-modal" data-l2-modal hidden role="dialog" aria-modal="true" aria-labelledby="l2-modal-title">
+      <div class="ko-modal-card">
+        <header class="ko-modal-head">
+          <div>
+            <h2 id="l2-modal-title" data-l2-title>免费领取 L2 集成版</h2>
+            <p data-l2-subtitle style="margin:4px 0 0;color:var(--muted);font-size:13px">填完我 10 分钟内微信发你——不用你翻文档、不用自己装依赖。</p>
+          </div>
+          <button class="ko-icon-btn" type="button" data-l2-close aria-label="关闭">×</button>
+        </header>
+        <form class="ko-modal-body" data-l2-form novalidate>
+          <div class="ko-field">
+            <label for="l2-name">你的称呼</label>
+            <input id="l2-name" name="name" type="text" required placeholder="例如：康少 / 阿豪" minlength="1">
+          </div>
+          <div class="ko-field">
+            <label for="l2-wechat">微信号 <span style="color:var(--amber)">*</span></label>
+            <input id="l2-wechat" name="wechat" type="text" required placeholder="用来加你发资源的微信号，请写对">
+          </div>
+          <div class="ko-field">
+            <label for="l2-scene">你现在最需要用在哪 <span style="color:var(--amber)">*</span></label>
+            <select id="l2-scene" name="scene" required>
+              <option value="">请选一个最相关的</option>
+              <option value="video">做短视频 / 口播 / 数字人</option>
+              <option value="content">做内容生产 / 写作 / 选题 / 输出</option>
+              <option value="publish">多平台分发 / 发布 / 运营</option>
+              <option value="all">三个都想先看看</option>
+            </select>
+          </div>
+          <div class="ko-field">
+            <label for="l2-tag">你是做什么领域的？</label>
+            <input id="l2-tag" name="tag" type="text" placeholder="例如：AI工具测评 / 个人IP / 电商运营 / 教育">
+          </div>
+          <div data-l2-success hidden style="padding:14px 16px;border-radius:10px;background:var(--green-soft);color:var(--green);border:1px solid color-mix(in srgb, var(--green) 25%, var(--line));font-size:14px">
+            ✅ 提交成功啦。我 10 分钟内加你微信发资源——<strong style="color:var(--green)">通过好友请求就发你</strong>，不要着急～
+          </div>
+          <div class="ko-modal-actions" data-l2-actions>
+            <button class="ko-btn" type="button" data-l2-close>再想想</button>
+            <button class="ko-btn ko-btn-primary" type="submit">🎁 现在就领（加微信发）</button>
+          </div>
+        </form>
+      </div>
+    </section>
   </div>
 
   <script>
@@ -619,6 +878,57 @@
 
       tabs.forEach((tab) => tab.addEventListener('click', () => openTab(tab.dataset.tab)));
       app.querySelectorAll('[data-open-tab]').forEach((button) => button.addEventListener('click', () => openTab(button.dataset.openTab)));
+
+      // ========== L2 集成包领取弹窗绑定 ==========
+      const l2Mask = app.querySelector('[data-l2-mask]');
+      const l2Modal = app.querySelector('[data-l2-modal]');
+      const l2Form = app.querySelector('[data-l2-form]');
+      const l2Title = app.querySelector('[data-l2-title]');
+      const l2Subtitle = app.querySelector('[data-l2-subtitle]');
+      const l2Success = app.querySelector('[data-l2-success]');
+      const l2Actions = app.querySelector('[data-l2-actions]');
+      const L2_PKG_MAP = {
+        'video-3in1': { name: '口播视频 3 件套', desc: '文章 → 脚本 → 分镜 → 字幕 → 视频，一套跑通。' },
+        'content-workflow': { name: '1 人公司内容工作流', desc: '选题 → 写作 → 拆条 → 质检 → 留资钩子，自动串起来。' },
+        'publish-5plat': { name: '5 平台一键分发', desc: '视频/图文一键改尺寸、加钩子、生成 5 平台版本。' }
+      };
+      const openL2Modal = (pkg) => {
+        const info = L2_PKG_MAP[pkg] || { name: 'L2 集成版（任选）', desc: '3 套高频工作流，留微信我发你。' };
+        l2Title.textContent = `免费领「${info.name}」L2 集成版`;
+        l2Subtitle.textContent = info.desc + ' 填完我 10 分钟内微信发你——不用翻文档、不用自己装依赖。';
+        l2Success.hidden = true;
+        l2Actions.hidden = false;
+        l2Form.reset();
+        l2Mask.hidden = false;
+        l2Modal.hidden = false;
+        document.body.classList.add('ko-modal-open');
+        setTimeout(() => l2Modal.querySelector('#l2-name')?.focus(), 50);
+      };
+      const closeL2Modal = () => {
+        l2Mask.hidden = true;
+        l2Modal.hidden = true;
+        document.body.classList.remove('ko-modal-open');
+      };
+      app.querySelectorAll('[data-action="claim-package"]').forEach((btn) => {
+        btn.addEventListener('click', () => openL2Modal(btn.dataset.pkg));
+      });
+      app.querySelectorAll('[data-l2-close]').forEach((btn) => btn.addEventListener('click', closeL2Modal));
+      l2Mask?.addEventListener('click', closeL2Modal);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !l2Modal.hidden) closeL2Modal(); });
+      l2Form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(l2Form).entries());
+        if (!data.wechat || !data.scene) { showToast('微信号和使用场景是必填哒～'); return; }
+        l2Success.hidden = false;
+        l2Actions.hidden = true;
+        try {
+          const existing = JSON.parse(localStorage.getItem('kanvis-l2-leads') || '[]');
+          existing.push({ ...data, _ts: new Date().toISOString() });
+          localStorage.setItem('kanvis-l2-leads', JSON.stringify(existing));
+        } catch (_) {}
+        app.dispatchEvent(new CustomEvent('kanvis:l2-claim-submitted', { bubbles: true, detail: data }));
+        setTimeout(closeL2Modal, 2800);
+      });
 
       const actionLabels = {
         'submit-demand': '功能需求与开源共创',
