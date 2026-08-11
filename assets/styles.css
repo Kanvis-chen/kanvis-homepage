@@ -1137,6 +1137,7 @@ a.resource-item:hover { background: var(--soft); }
 @media (max-width: 760px) {
   body.menu-open { overflow: hidden; }
   body.menu-open .site-header {
+    height: 100vh;
     height: 100dvh;
     background: #fff;
     backdrop-filter: none;
@@ -1152,6 +1153,7 @@ a.resource-item:hover { background: var(--soft); }
   .mobile-nav {
     position: absolute;
     inset: 68px 0 auto;
+    min-height: calc(100vh - 68px);
     min-height: calc(100dvh - 68px);
   }
   .header-actions { gap: 10px; }
