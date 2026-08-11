@@ -161,8 +161,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .mobile-nav {
   position: fixed;
   inset: 68px 0 0;
+  z-index: 1;
   padding: 36px 24px;
   background: #fff;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .mobile-nav a {
@@ -1132,6 +1135,13 @@ a.resource-item:hover { background: var(--soft); }
 }
 
 @media (max-width: 760px) {
+  body.menu-open { overflow: hidden; }
+  body.menu-open .site-header {
+    height: 100dvh;
+    background: #fff;
+    backdrop-filter: none;
+  }
+
   .page-shell,
   .nav-shell { width: min(calc(100% - 32px), var(--shell)); }
   .desktop-nav, .header-github { display: none; }
@@ -1139,6 +1149,11 @@ a.resource-item:hover { background: var(--soft); }
   .menu-button { display: block; }
   .nav-shell > .header-actions > .header-cta { display: none; }
   .mobile-nav .header-cta { padding: 10px 12px; font-size: 12px; }
+  .mobile-nav {
+    position: absolute;
+    inset: 68px 0 auto;
+    min-height: calc(100dvh - 68px);
+  }
   .header-actions { gap: 10px; }
 
   .hero {
