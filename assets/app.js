@@ -16,6 +16,7 @@
   const setMenu = (open) => {
     if (!menuButton || !mobileNav) return;
     menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? '关闭导航' : '打开导航');
     mobileNav.hidden = !open;
     body.classList.toggle('menu-open', open);
   };
@@ -51,10 +52,10 @@
 
   const serviceDetails = {
     business: {
-      title: 'AI商业化落地实践 28天陪跑',
-      summary: '28天围绕一个真实的内容获客或 AI 系统落地问题，陪你把目标、流程和工具接起来，完成一轮可执行、可复盘的实践。',
+      title: 'Kanvis AI 经营系统实战营',
+      summary: '28 天围绕一个真实的内容获客或 AI 系统落地问题，把目标、流程和工具接起来，完成一轮可执行、可复盘的实践。',
       items: ['明确内容获客、AI应用或经营效率目标', '搭建人和AI共同协作的工作流程与系统', '完成一个可运行版本，并确定下一轮迭代'],
-      note: '如果你已经明确一个要推进的目标，并愿意在 28 天内持续行动与复盘，这项服务更合适。开始时间与合作方式将在沟通后确认。'
+      note: '如果你已经明确一个要推进的目标，并愿意在 28 天内持续行动与复盘，这个实战营更合适。开始时间与合作方式将在沟通后确认。'
     },
     enterprise: {
       title: '企业 AI 赋能与系统落地',
