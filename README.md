@@ -61,3 +61,11 @@ git push origin main
 - 后续可增加公众号、微信小店或课程下单入口，但必须先确认公开身份与使用场景。
 
 更新产品名称、价格或付款入口时，需要同步检查 `index.html`、`course.html`、`open/index.html` 和本 README，避免公开信息漂移。
+
+## 支持作者与答疑
+
+如果 Kanvis 对你有帮助，欢迎付费支持。付费支持默认包含答疑群服务，付费后可进群交流，并获得作者答疑。
+
+可扫码或打开 [答疑群说明](https://mp.weixin.qq.com/s/TmEo0UmFubuD-7Ugiwi82Q) 了解详情。
+
+[![付费答疑社群二维码](assets/paid-qa-community-qrcode.png)](https://mp.weixin.qq.com/s/TmEo0UmFubuD-7Ugiwi82Q)
